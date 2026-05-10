@@ -1,4 +1,4 @@
-package com.iuc.tpiuc.dto.response;
+package com.iuc.tpiuc.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
