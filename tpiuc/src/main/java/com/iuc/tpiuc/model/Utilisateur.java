@@ -5,8 +5,10 @@ import com.iuc.tpiuc.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
+
 @Entity
-@Table(name = "utilisateurs")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,9 +21,12 @@ public class Utilisateur {
     private Long id;
 
     private String nom;
-
     private String prenom;
 
+    @Column(unique = true)
+    private String code;
+
+    @Column(unique = true)
     private String email;
 
     private String motDePasse;
@@ -29,4 +34,12 @@ public class Utilisateur {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Reservation> reservations;
+
+    @OneToMany(mappedBy = "createur")
+    private List<Signalement> signalements;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Audit> audits;
 }
