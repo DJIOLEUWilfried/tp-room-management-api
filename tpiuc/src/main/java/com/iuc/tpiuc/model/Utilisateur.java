@@ -24,7 +24,7 @@ public class Utilisateur {
 
     private String motDePasse;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    
+//    @Enumerated(EnumType.STRING)
+//    private Role role;
+
 }
