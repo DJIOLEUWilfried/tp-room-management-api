@@ -16,7 +16,10 @@ public class UtilisateurResponseDTO {
 
     private String prenom;
 
+    private String code;
+
     private String email;
 
     private Role role;
+
 }
