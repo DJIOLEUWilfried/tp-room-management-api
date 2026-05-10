@@ -6,8 +6,8 @@ import lombok.*;
 
 import java.util.List;
 
+
 @Entity
-@Table(name = "salles")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,14 +20,12 @@ public class Salle {
     private Long id;
 
     private String nom;
-
     private Integer capacite;
-
     private Boolean disponible;
+    private String localisation;
 
     @OneToMany(mappedBy = "salle")
     private List<Reservation> reservations;
 
-    @OneToMany(mappedBy = "salle")
-    private List<Materiel> materiels;
+
 }
