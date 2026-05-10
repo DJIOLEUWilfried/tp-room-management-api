@@ -28,4 +28,5 @@ public class Materiel {
     @ManyToOne
     @JoinColumn(name = "salle_id")
     private Salle salle;
+
 }

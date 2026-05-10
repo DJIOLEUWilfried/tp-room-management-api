@@ -5,7 +5,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/tpiuc_db
     username: postgres
-    password: 1234
+    password: Wilfried23
     driver-class-name: org.postgresql.Driver
 
   jpa:
