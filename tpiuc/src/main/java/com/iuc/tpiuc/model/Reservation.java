@@ -7,9 +7,9 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
-@Table(name = "reservations")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,21 +22,24 @@ public class Reservation {
     private Long id;
 
     private LocalDate dateReservation;
-
     private LocalTime heureDebut;
-
     private LocalTime heureFin;
 
     @Enumerated(EnumType.STRING)
     private ReservationStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "professeur_id")
-    private Utilisateur professeur;
+    private Utilisateur utilisateur;
 
     @ManyToOne
-    @JoinColumn(name = "salle_id")
     private Salle salle;
 
+    @ManyToMany
+    @JoinTable(
+            name = "reservation_materiel",
+            joinColumns = @JoinColumn(name = "reservation_id"),
+            inverseJoinColumns = @JoinColumn(name = "materiel_id")
+    )
+    private List<Materiel> materiels;
 
 }
