@@ -16,7 +16,9 @@ public class SignalementResponseDTO {
 
     private LocalDateTime dateSignalement;
 
-    private String professeur;
+    private Long professeur;
 
     private String materiel;
+
+
 }

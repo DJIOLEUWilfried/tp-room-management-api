@@ -34,7 +34,7 @@ public class Utilisateur {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "utilisateur")
+    @OneToMany(mappedBy = "professeur")
     private List<Reservation> reservations;
 
     @OneToMany(mappedBy = "createur")

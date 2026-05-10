@@ -7,6 +7,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -25,4 +26,12 @@ public class ReservationResponseDTO {
     private String professeur;
 
     private String salle;
+
+
+    private String professeurId;
+
+    private String idSalle;
+
+    private List<String> materiels;
+
 }

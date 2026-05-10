@@ -15,4 +15,6 @@ public class SignalementRequestDTO {
 
     @NotNull(message = "Le matériel est obligatoire")
     private Long materielId;
+
+
 }

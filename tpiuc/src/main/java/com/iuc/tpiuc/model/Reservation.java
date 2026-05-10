@@ -29,7 +29,8 @@ public class Reservation {
     private ReservationStatus status;
 
     @ManyToOne
-    private Utilisateur utilisateur;
+    @JoinColumn(name = "professeurId")
+    private Utilisateur professeur;
 
     @ManyToOne
     private Salle salle;

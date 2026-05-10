@@ -18,5 +18,5 @@ public class MaterielRequestDTO {
     @NotNull(message = "L'état est obligatoire")
     private MaterielEtat etat;
 
-    private Long salleId;
+
 }

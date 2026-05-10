@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 public class ReservationRequestDTO {
@@ -25,4 +26,8 @@ public class ReservationRequestDTO {
 
     @NotNull(message = "La salle est obligatoire")
     private Long salleId;
+
+
+    private List<Long> materielIds;
+
 }

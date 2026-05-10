@@ -15,4 +15,7 @@ public class SalleResponseDTO {
     private Integer capacite;
 
     private Boolean disponible;
+
+    private String localisation;
+
 }

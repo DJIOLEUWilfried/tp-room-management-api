@@ -17,5 +17,4 @@ public class MaterielResponseDTO {
 
     private MaterielEtat etat;
 
-    private String salle;
 }
