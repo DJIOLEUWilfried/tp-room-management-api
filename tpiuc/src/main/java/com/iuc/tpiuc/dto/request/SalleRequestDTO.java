@@ -15,4 +15,8 @@ public class SalleRequestDTO {
     private Integer capacite;
 
     private Boolean disponible;
+
+    @NotBlank(message = "La localisation de la salle est obligatoire")
+    private String localisation;
+
 }
