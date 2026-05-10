@@ -4,6 +4,8 @@ package com.iuc.tpiuc.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "salles")
 @Getter
