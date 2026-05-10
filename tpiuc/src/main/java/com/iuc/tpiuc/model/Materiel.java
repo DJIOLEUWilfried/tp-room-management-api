@@ -5,8 +5,9 @@ import com.iuc.tpiuc.enums.MaterielEtat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Table(name = "materiels")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,14 +20,15 @@ public class Materiel {
     private Long id;
 
     private String nom;
-
     private Integer quantite;
 
     @Enumerated(EnumType.STRING)
     private MaterielEtat etat;
 
-    @ManyToOne
-    @JoinColumn(name = "salle_id")
-    private Salle salle;
+    @ManyToMany(mappedBy = "materiels")
+    private List<Reservation> reservations;
+
+    @OneToMany(mappedBy = "materiel")
+    private List<Signalement> signalements;
 
 }
