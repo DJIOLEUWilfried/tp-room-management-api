@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SignalementRepository extends JpaRepository<Signalement, Long> {
 
-    List<Signalement> findByProfesseurId(Long professeurId);
+    List<Signalement> findByCreateurId(Long professeurId);
 
     List<Signalement> findByMaterielId(Long materielId);
 

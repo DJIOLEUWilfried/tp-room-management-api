@@ -3,6 +3,7 @@ package com.iuc.tpiuc.service.impl;
 import com.iuc.tpiuc.dto.request.SalleRequestDTO;
 import com.iuc.tpiuc.dto.response.SalleResponseDTO;
 import com.iuc.tpiuc.exception.custom.ResourceAlreadyExistsException;
+import com.iuc.tpiuc.exception.custom.ResourceNotFoundException;
 import com.iuc.tpiuc.mapper.SalleMapper;
 import com.iuc.tpiuc.model.Salle;
 import com.iuc.tpiuc.repository.SalleRepository;
@@ -45,7 +46,7 @@ public class SalleServiceImpl implements SalleService {
 
             log.error(String.format("\n ============  Échec de création de cette salle. Erreur: %s   ============" , e) );
 
-            throw new RuntimeException("\n  Échec de création de cette salle");
+            throw new ResourceNotFoundException("\n  Échec de création de cette salle");
         }
     }
 
@@ -68,7 +69,30 @@ public class SalleServiceImpl implements SalleService {
 
     @Override
     public SalleResponseDTO update(Long id, SalleRequestDTO dto) {
-        return null;
+
+        log.info("\n ============  Début modification salle : {}  ============", id);
+
+        try {
+
+            Salle salle = salleRepository.findById(id)
+                    .orElseThrow(() ->
+                            new ResourceNotFoundException("\n Salle introuvable"));
+
+            Salle salleSave = SalleMapper.toEntity(dto);
+
+            Salle updated = salleRepository.save(salleSave);
+
+            log.info("\n ============  Salle modifiée avec succès : {}  ============", id);
+
+            return SalleMapper.toResponseDTO(updated);
+
+        } catch (Exception e) {
+
+            log.error("\n ============  Erreur modification salle {}  ============", id, e);
+
+            throw e;
+        }
+
     }
 
     @Override
