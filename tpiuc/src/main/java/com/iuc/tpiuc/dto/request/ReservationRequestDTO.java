@@ -1,5 +1,6 @@
 package com.iuc.tpiuc.dto.request;
 
+import com.iuc.tpiuc.enums.ReservationStatus;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -17,6 +18,9 @@ public class ReservationRequestDTO {
 
     @NotNull(message = "L'heure de début est obligatoire")
     private LocalTime heureDebut;
+
+    @NotNull(message = "Le status de la reservation est obligatoire")
+    private ReservationStatus status;
 
     @NotNull(message = "L'heure de fin est obligatoire")
     private LocalTime heureFin;
