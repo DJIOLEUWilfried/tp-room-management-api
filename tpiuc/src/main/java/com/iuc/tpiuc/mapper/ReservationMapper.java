@@ -39,9 +39,8 @@ public class ReservationMapper {
 
 
 
-    public static ReservationResponseDTO toDTO(Reservation r) {
+    public static ReservationResponseDTO toResponseDTO(Reservation r) {
 
-        // UtilisateurResponseDTO  MaterielResponseDTO
         return ReservationResponseDTO.builder()
                 .id(r.getId())
                 .dateReservation(r.getDateReservation())

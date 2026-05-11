@@ -15,7 +15,7 @@ public class MaterielMapper {
                 .build();
     }
 
-    public static MaterielResponseDTO toResponse(Materiel materiel) {
+    public static MaterielResponseDTO toResponseDTO(Materiel materiel) {
 
         return MaterielResponseDTO.builder()
                 .id(materiel.getId())

@@ -16,7 +16,7 @@ public class SalleMapper {
                 .build();
     }
 
-    public static SalleResponseDTO toDTO(Salle salle) {
+    public static SalleResponseDTO toResponseDTO(Salle salle) {
 
         return SalleResponseDTO.builder()
                 .id(salle.getId())
