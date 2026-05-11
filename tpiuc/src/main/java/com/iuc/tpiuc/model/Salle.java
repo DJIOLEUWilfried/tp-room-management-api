@@ -20,7 +20,9 @@ public class Salle {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private String nom;
+
     private Integer capacite;
     private Boolean disponible;
     private String localisation;
