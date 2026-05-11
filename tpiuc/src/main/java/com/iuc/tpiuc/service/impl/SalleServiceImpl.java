@@ -132,7 +132,28 @@ public class SalleServiceImpl implements SalleService {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+
+        log.info("Suppression salle : {}", id);
+
+        try {
+
+            Salle salle = salleRepository.findById(id)
+                    .orElseThrow(() ->
+                            new ResourceNotFoundException("\n Salle introuvable"));
+
+            salleRepository.delete(salle);
+
+            log.info("Salle supprimée : {}", id);
+
+            return true;
+
+        } catch (Exception e) {
+
+            log.error("Erreur suppression salle {}", id, e);
+
+            throw e;
+        }
+
     }
 
 
