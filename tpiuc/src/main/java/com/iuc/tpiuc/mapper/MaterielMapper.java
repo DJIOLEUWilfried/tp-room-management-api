@@ -17,14 +17,12 @@ public class MaterielMapper {
 
     public static MaterielResponseDTO toResponse(Materiel materiel) {
 
-        MaterielResponseDTO dto = new MaterielResponseDTO();
-
-        dto.setId(materiel.getId());
-        dto.setNom(materiel.getNom());
-        dto.setQuantite(materiel.getQuantite());
-        dto.setEtat(materiel.getEtat());
-
-        return dto;
+        return MaterielResponseDTO.builder()
+                .id(materiel.getId())
+                .nom(materiel.getNom())
+                .quantite(materiel.getQuantite())
+                .etat(materiel.getEtat())
+                .build();
     }
 
 }
