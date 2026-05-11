@@ -23,6 +23,4 @@ public class SalleResponseDTO {
 
     private String localisation;
 
-    private List<Reservation> reservations;
-
 }
