@@ -25,10 +25,10 @@ public class ReservationResponseDTO {
 
     private ReservationStatus status;
 
-    private String professeurId;
+    private String professeur;
 
-    private String idSalle;
+    private String salle;
 
-    private List<String> materielIds;
+    private List<String> materiels;
 
 }
