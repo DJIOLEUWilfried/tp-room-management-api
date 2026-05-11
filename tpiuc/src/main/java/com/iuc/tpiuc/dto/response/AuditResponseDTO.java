@@ -18,7 +18,7 @@ public class AuditResponseDTO {
 
     private LocalDateTime dateAction;
 
-    private String utilisateur;
+    private UtilisateurResponseDTO utilisateur;
 
 
 }
