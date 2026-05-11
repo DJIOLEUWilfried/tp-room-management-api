@@ -24,5 +24,5 @@ public class MaterielResponseDTO {
     private Integer quantite;
 
     private MaterielEtat etat;
-    
+
 }

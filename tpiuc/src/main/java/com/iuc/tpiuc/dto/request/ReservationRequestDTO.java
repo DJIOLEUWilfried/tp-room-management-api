@@ -15,18 +15,15 @@ import java.util.List;
 @AllArgsConstructor
 public class ReservationRequestDTO {
 
-//    @NotNull(message = "La date est obligatoire")
-//    @FutureOrPresent(message = "La date doit être aujourd'hui ou dans le futur")
-//    private LocalDate dateReservation;
 
     @NotNull(message = "L'heure de début est obligatoire")
     private LocalTime heureDebut;
 
-    @NotNull(message = "Le status de la reservation est obligatoire")
-    private ReservationStatus status;
-
     @NotNull(message = "L'heure de fin est obligatoire")
     private LocalTime heureFin;
+
+    @NotNull(message = "Le status de la reservation est obligatoire")
+    private ReservationStatus status;
 
     @NotNull(message = "Le professeur est obligatoire")
     private Long professeurId;
@@ -34,7 +31,7 @@ public class ReservationRequestDTO {
     @NotNull(message = "La salle est obligatoire")
     private Long salleId;
 
-    @NotNull(message = "Le materiel est obligatoire")
+    // @NotNull(message = "Le materiel est obligatoire")
     private List<Long> materielIds;
 
 
