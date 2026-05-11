@@ -112,8 +112,22 @@ public class SalleServiceImpl implements SalleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SalleResponseDTO> getAll() {
-        return List.of();
+
+        log.info("\n ============ Récupération liste salles. ============");
+
+        List<SalleResponseDTO> result =
+                salleRepository.findAll()
+                        .stream()
+                        .map(SalleMapper::toResponseDTO)
+                        .toList();
+
+
+        log.info("\n ============  Nombre salles trouvées : {}  ============", result.size());
+
+        return result;
+
     }
 
     @Override
