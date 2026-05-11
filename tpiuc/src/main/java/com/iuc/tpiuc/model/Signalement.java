@@ -24,8 +24,10 @@ public class Signalement {
     private LocalDateTime dateSignalement;
 
     @ManyToOne
+    @JoinColumn(name = "id_createur")
     private Utilisateur createur;
 
     @ManyToOne
+    @JoinColumn(name = "id_materiel")
     private Materiel materiel;
 }

@@ -16,13 +16,9 @@ public class AuditResponseDTO {
 
     private String action;
 
-    private String entite;
-
-    private Long entiteId;
-
     private LocalDateTime dateAction;
 
-    private Long utilisateurId;
+    private String utilisateur;
 
 
 }

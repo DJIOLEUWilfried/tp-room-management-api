@@ -16,11 +16,6 @@ public class AuditRequestDTO {
     @NotBlank(message = "L'action est obligatoire")
     private String action;
 
-    @NotBlank(message = "Le nom de l'entité est obligatoire")
-    private String entite;
-
-    @NotNull(message = "L'identifiant de l'entité est obligatoire")
-    private Long entiteId;
 
     @NotNull(message = "L'identifiant de l'utilisateur est obligatoire")
     private Long utilisateurId;

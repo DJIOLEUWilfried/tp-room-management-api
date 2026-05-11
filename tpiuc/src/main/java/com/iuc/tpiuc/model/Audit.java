@@ -27,6 +27,7 @@ public class Audit {
     private LocalDateTime dateAction;
 
     @ManyToOne
+    @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
 
 }

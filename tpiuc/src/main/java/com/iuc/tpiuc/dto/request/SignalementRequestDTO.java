@@ -15,8 +15,6 @@ public class SignalementRequestDTO {
     @NotBlank(message = "La description est obligatoire")
     private String description;
 
-    private LocalDateTime dateSignalement;
-
     @NotNull(message = "Le professeur est obligatoire")
     private Long professeurId;
 

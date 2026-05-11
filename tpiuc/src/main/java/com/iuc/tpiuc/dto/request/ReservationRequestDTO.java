@@ -34,6 +34,8 @@ public class ReservationRequestDTO {
     @NotNull(message = "La salle est obligatoire")
     private Long salleId;
 
+    @NotNull(message = "Le materiel est obligatoire")
     private List<Long> materielIds;
+
 
 }

@@ -28,6 +28,7 @@ public class UtilisateurMapper {
                 .code(utilisateur.getCode())
                 .email(utilisateur.getEmail())
                 .role(utilisateur.getRole())
+                .dateCreation(utilisateur.getDateCreation())
                 .build();
 
     }

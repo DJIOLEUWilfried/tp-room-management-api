@@ -2,7 +2,13 @@ package com.iuc.tpiuc.dto.response;
 
 
 import com.iuc.tpiuc.enums.MaterielEtat;
+import com.iuc.tpiuc.model.Reservation;
+import com.iuc.tpiuc.model.Signalement;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +24,9 @@ public class MaterielResponseDTO {
     private Integer quantite;
 
     private MaterielEtat etat;
+
+    private List<Reservation> reservations;
+
+    private List<Signalement> signalements;
 
 }

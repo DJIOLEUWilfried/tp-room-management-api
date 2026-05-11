@@ -4,6 +4,7 @@ package com.iuc.tpiuc.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,8 +25,8 @@ public class Salle {
     private Boolean disponible;
     private String localisation;
 
-    @OneToMany(mappedBy = "salle")
-    private List<Reservation> reservations;
+    @OneToMany(mappedBy = "salle", fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
 
 
 }

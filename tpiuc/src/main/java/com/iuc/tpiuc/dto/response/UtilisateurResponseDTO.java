@@ -3,7 +3,15 @@ package com.iuc.tpiuc.dto.response;
 
 
 import com.iuc.tpiuc.enums.Role;
+import com.iuc.tpiuc.model.Audit;
+import com.iuc.tpiuc.model.Reservation;
+import com.iuc.tpiuc.model.Signalement;
+import jakarta.persistence.OneToMany;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,5 +31,13 @@ public class UtilisateurResponseDTO {
     private String email;
 
     private Role role;
+
+    private LocalDateTime dateCreation;
+
+//    private List<Reservation> professeur;
+//
+//    private List<Signalement> signalements;
+//
+//    private List<Audit> audits;
 
 }

@@ -5,6 +5,7 @@ import com.iuc.tpiuc.enums.MaterielEtat;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,10 +27,10 @@ public class Materiel {
     @Enumerated(EnumType.STRING)
     private MaterielEtat etat;
 
-    @ManyToMany(mappedBy = "materiels")
-    private List<Reservation> reservations;
+    @ManyToMany(mappedBy = "materiels", fetch = FetchType.LAZY)
+    private List<Reservation> reservations = new ArrayList<>();
 
-    @OneToMany(mappedBy = "materiel")
-    private List<Signalement> signalements;
+    @OneToMany(mappedBy = "materiel", fetch = FetchType.LAZY)
+    private List<Signalement> signalements = new ArrayList<>();
 
 }

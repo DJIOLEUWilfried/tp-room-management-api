@@ -8,6 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,10 +32,11 @@ public class Reservation {
     private ReservationStatus status;
 
     @ManyToOne
-    @JoinColumn(name = "professeurId")
+    @JoinColumn(name = "id_professeur")
     private Utilisateur professeur;
 
     @ManyToOne
+    @JoinColumn(name = "id_salle")
     private Salle salle;
 
     @ManyToMany
@@ -43,6 +45,6 @@ public class Reservation {
             joinColumns = @JoinColumn(name = "reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "materiel_id")
     )
-    private List<Materiel> materiels;
+    private List<Materiel> materiels = new ArrayList<>();
 
 }
