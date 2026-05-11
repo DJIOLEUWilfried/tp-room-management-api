@@ -34,10 +34,4 @@ public class UtilisateurResponseDTO {
 
     private LocalDateTime dateCreation;
 
-//    private List<Reservation> professeur;
-//
-//    private List<Signalement> signalements;
-//
-//    private List<Audit> audits;
-
 }
