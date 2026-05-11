@@ -9,16 +9,19 @@ import com.iuc.tpiuc.model.Salle;
 import com.iuc.tpiuc.model.Utilisateur;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
 public class ReservationMapper {
 
-    public static Reservation toEntity(
-            ReservationRequestDTO dto,
-            Utilisateur utilisateur,
-            Salle salle
-    ) {
+    public static Reservation toEntity(ReservationRequestDTO dto) {
+
+        Utilisateur utilisateur = new Utilisateur();
+        utilisateur.setId(dto.getProfesseurId());
+
+        Salle salle = new Salle();
+        salle.setId(dto.getSalleId());
 
         return Reservation.builder()
                 .dateReservation(dto.getDateReservation())
@@ -34,7 +37,7 @@ public class ReservationMapper {
 
         return ReservationResponseDTO.builder()
                 .id(reservation.getId())
-                .dateReservation(reservation.getDateReservation())
+                .dateReservation(LocalDateTime.now())
                 .heureDebut(reservation.getHeureDebut())
                 .heureFin(reservation.getHeureFin())
                 .status(reservation.getStatus())

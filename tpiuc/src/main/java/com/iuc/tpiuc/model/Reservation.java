@@ -4,6 +4,7 @@ package com.iuc.tpiuc.model;
 import com.iuc.tpiuc.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -21,6 +22,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CreationTimestamp
     private LocalDate dateReservation;
     private LocalTime heureDebut;
     private LocalTime heureFin;

@@ -15,9 +15,9 @@ import java.util.List;
 @AllArgsConstructor
 public class ReservationRequestDTO {
 
-    @NotNull(message = "La date est obligatoire")
-    @FutureOrPresent(message = "La date doit être aujourd'hui ou dans le futur")
-    private LocalDate dateReservation;
+//    @NotNull(message = "La date est obligatoire")
+//    @FutureOrPresent(message = "La date doit être aujourd'hui ou dans le futur")
+//    private LocalDate dateReservation;
 
     @NotNull(message = "L'heure de début est obligatoire")
     private LocalTime heureDebut;
