@@ -14,6 +14,7 @@ public class SalleRequestDTO {
     @Min(value = 1, message = "La capacité doit être supérieure à 0")
     private Integer capacite;
 
+    @NotNull(message = "La disponibilité est obligatoire")
     private Boolean disponible;
 
     @NotBlank(message = "La localisation de la salle est obligatoire")
