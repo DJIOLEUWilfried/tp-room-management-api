@@ -34,7 +34,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
     @Override
     public UtilisateurResponseDTO getById(Long id) {
-        return null;
+
+        Utilisateur utilisateur = utilisateurRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Utilisateur introuvable"));
+
+        return UtilisateurMapper.toResponseDTO(utilisateur);
+
     }
 
     @Override
