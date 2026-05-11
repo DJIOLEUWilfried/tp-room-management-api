@@ -7,6 +7,4 @@ import java.util.List;
 
 public interface AuditRepository extends JpaRepository<Audit, Long> {
 
-    List<Audit> findByEntite(String entite);
-
 }

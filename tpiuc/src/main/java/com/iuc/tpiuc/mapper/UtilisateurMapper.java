@@ -18,7 +18,7 @@ public class UtilisateurMapper {
                 .build();
     }
 
-    public static UtilisateurResponseDTO toTDO(Utilisateur utilisateur) {
+    public static UtilisateurResponseDTO toResponseDTO(Utilisateur utilisateur) {
 
 
         return UtilisateurResponseDTO.builder()
