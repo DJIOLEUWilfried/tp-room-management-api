@@ -30,4 +30,5 @@ public class Signalement {
     @ManyToOne
     @JoinColumn(name = "id_materiel")
     private Materiel materiel;
+
 }

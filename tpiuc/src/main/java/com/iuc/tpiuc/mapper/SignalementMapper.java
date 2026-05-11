@@ -1,47 +1,47 @@
 package com.iuc.tpiuc.mapper;
 
 import com.iuc.tpiuc.dto.request.SignalementRequestDTO;
+import com.iuc.tpiuc.dto.response.MaterielResponseDTO;
 import com.iuc.tpiuc.dto.response.SignalementResponseDTO;
+import com.iuc.tpiuc.dto.response.UtilisateurResponseDTO;
 import com.iuc.tpiuc.model.Materiel;
 import com.iuc.tpiuc.model.Signalement;
 import com.iuc.tpiuc.model.Utilisateur;
 
 public class SignalementMapper {
 
-    public static Signalement toEntity(SignalementRequestDTO dto) {
-
-        Utilisateur utilisateur = new Utilisateur();
-
-        Materiel materiel = new Materiel();
+    public static Signalement toEntity(
+            SignalementRequestDTO dto,
+            Utilisateur createur,
+            Materiel materiel
+    ) {
 
         return Signalement.builder()
                 .description(dto.getDescription())
-                .dateSignalement(LocalDateTime.now())
-                .createur(utilisateur)
+                .createur(createur)
                 .materiel(materiel)
                 .build();
     }
 
-    public static SignalementResponseDTO toResponse(
-            Signalement signalement
-    ) {
+    public static SignalementResponseDTO toResponseDTO(Signalement s) {
 
-        SignalementResponseDTO dto =
-                new SignalementResponseDTO();
+        return SignalementResponseDTO.builder()
+                .id(s.getId())
+                .description(s.getDescription())
+                .dateSignalement(s.getDateSignalement())
 
-        dto.setId(signalement.getId());
-        dto.setDescription(signalement.getDescription());
-        dto.setDateSignalement(signalement.getDateSignalement());
+                .createur(UtilisateurResponseDTO.builder()
+                        .id(s.getCreateur().getId())
+                        .nom(s.getCreateur().getNom())
+                        .email(s.getCreateur().getEmail())
+                        .build())
 
-        dto.setNomUtilisateur(
-                signalement.getCreateur().getNom()
-        );
+                .materiel(MaterielResponseDTO.builder()
+                        .id(s.getMateriel().getId())
+                        .nom(s.getMateriel().getNom())
+                        .quantite(s.getMateriel().getQuantite())
+                        .build())
 
-        dto.setNomMateriel(
-                signalement.getMateriel().getNom()
-        );
-
-        return dto;
+                .build();
     }
-
 }

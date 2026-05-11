@@ -18,9 +18,8 @@ public class SignalementResponseDTO {
 
     private LocalDateTime dateSignalement;
 
-    private String professeur;
+    private UtilisateurResponseDTO createur;
 
-    private String materiel;
-
+    private MaterielResponseDTO materiel;
 
 }
