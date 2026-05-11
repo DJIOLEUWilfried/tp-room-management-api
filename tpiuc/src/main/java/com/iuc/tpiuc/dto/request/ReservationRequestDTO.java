@@ -3,13 +3,16 @@ package com.iuc.tpiuc.dto.request;
 import com.iuc.tpiuc.enums.ReservationStatus;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ReservationRequestDTO {
 
     @NotNull(message = "La date est obligatoire")
@@ -30,7 +33,6 @@ public class ReservationRequestDTO {
 
     @NotNull(message = "La salle est obligatoire")
     private Long salleId;
-
 
     private List<Long> materielIds;
 

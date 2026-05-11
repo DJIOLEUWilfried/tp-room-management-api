@@ -3,9 +3,12 @@ package com.iuc.tpiuc.dto.request;
 
 import com.iuc.tpiuc.enums.MaterielEtat;
 import jakarta.validation.constraints.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class MaterielRequestDTO {
 
     @NotBlank(message = "Le nom du matériel est obligatoire")

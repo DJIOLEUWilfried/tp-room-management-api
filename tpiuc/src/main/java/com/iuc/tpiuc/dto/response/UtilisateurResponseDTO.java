@@ -3,10 +3,12 @@ package com.iuc.tpiuc.dto.response;
 
 
 import com.iuc.tpiuc.enums.Role;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class UtilisateurResponseDTO {
 

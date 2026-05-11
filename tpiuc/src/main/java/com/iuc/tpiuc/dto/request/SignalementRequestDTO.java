@@ -2,9 +2,12 @@ package com.iuc.tpiuc.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SignalementRequestDTO {
 
     @NotBlank(message = "La description est obligatoire")

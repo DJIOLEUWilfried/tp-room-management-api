@@ -20,6 +20,7 @@ public class Materiel {
     private Long id;
 
     private String nom;
+
     private Integer quantite;
 
     @Enumerated(EnumType.STRING)

@@ -5,9 +5,12 @@ import com.iuc.tpiuc.enums.Role;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UtilisateurRequestDTO {
 
     @NotBlank(message = "Le nom est obligatoire")

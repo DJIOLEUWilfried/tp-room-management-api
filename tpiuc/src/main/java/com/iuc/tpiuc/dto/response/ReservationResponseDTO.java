@@ -2,14 +2,16 @@ package com.iuc.tpiuc.dto.response;
 
 
 import com.iuc.tpiuc.enums.ReservationStatus;
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class ReservationResponseDTO {
 
@@ -23,15 +25,10 @@ public class ReservationResponseDTO {
 
     private ReservationStatus status;
 
-    private String professeur;
-
-    private String salle;
-
-
     private String professeurId;
 
     private String idSalle;
 
-    private List<String> materiels;
+    private List<String> materielIds;
 
 }

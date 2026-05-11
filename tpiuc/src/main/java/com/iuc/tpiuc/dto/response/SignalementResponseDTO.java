@@ -1,12 +1,14 @@
 package com.iuc.tpiuc.dto.response;
 
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class SignalementResponseDTO {
 
