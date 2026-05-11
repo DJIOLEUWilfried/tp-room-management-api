@@ -96,8 +96,19 @@ public class SalleServiceImpl implements SalleService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public SalleResponseDTO getById(Long id) {
-        return null;
+
+        log.info("\n ============  Recherche salle : {} ============", id);
+
+        Salle salle = salleRepository.findById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException("\n Salle introuvable"));
+
+        log.info("\n ============  Salle trouvée : {}  ============", id);
+
+        return SalleMapper.toResponseDTO(salle);
+
     }
 
     @Override
