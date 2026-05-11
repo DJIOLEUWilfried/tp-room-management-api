@@ -18,18 +18,18 @@ public class UtilisateurMapper {
                 .build();
     }
 
-    public static UtilisateurResponseDTO toResponse(Utilisateur utilisateur) {
+    public static UtilisateurResponseDTO toTDO(Utilisateur utilisateur) {
 
-        UtilisateurResponseDTO dto = new UtilisateurResponseDTO();
 
-        dto.setId(utilisateur.getId());
-        dto.setNom(utilisateur.getNom());
-        dto.setPrenom(utilisateur.getPrenom());
-        dto.setCode(utilisateur.getCode());
-        dto.setEmail(utilisateur.getEmail());
-        dto.setRole(utilisateur.getRole());
+        return UtilisateurResponseDTO.builder()
+                .id(utilisateur.getId())
+                .nom(utilisateur.getNom())
+                .prenom(utilisateur.getPrenom())
+                .code(utilisateur.getCode())
+                .email(utilisateur.getEmail())
+                .role(utilisateur.getRole())
+                .build();
 
-        return dto;
     }
 
 }
