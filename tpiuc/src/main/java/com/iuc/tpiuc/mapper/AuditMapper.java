@@ -25,6 +25,7 @@ public class AuditMapper {
                 UtilisateurResponseDTO.builder()
                         .id(audit.getUtilisateur().getId())
                         .nom(audit.getUtilisateur().getNom())
+                        .prenom(audit.getUtilisateur().getPrenom())
                         .email(audit.getUtilisateur().getEmail())
                         .build();
 
@@ -35,4 +36,6 @@ public class AuditMapper {
                 .utilisateur(utilisateurDTO)
                 .build();
     }
+
+
 }

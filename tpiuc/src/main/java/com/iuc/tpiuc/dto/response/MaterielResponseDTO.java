@@ -24,9 +24,5 @@ public class MaterielResponseDTO {
     private Integer quantite;
 
     private MaterielEtat etat;
-
-    private List<Reservation> reservations;
-
-    private List<Signalement> signalements;
-
+    
 }
