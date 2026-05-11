@@ -16,17 +16,15 @@ public class SalleMapper {
                 .build();
     }
 
-    public static SalleResponseDTO toResponse(Salle salle) {
+    public static SalleResponseDTO toDTO(Salle salle) {
 
-        SalleResponseDTO dto = new SalleResponseDTO();
-
-        dto.setId(salle.getId());
-        dto.setNom(salle.getNom());
-        dto.setCapacite(salle.getCapacite());
-        dto.setLocalisation(salle.getLocalisation());
-        dto.setDisponible(salle.getDisponible());
-
-        return dto;
+        return SalleResponseDTO.builder()
+                .id(salle.getId())
+                .nom(salle.getNom())
+                .capacite(salle.getCapacite())
+                .localisation(salle.getLocalisation())
+                .disponible(salle.getDisponible())
+                .build();
     }
 
 
