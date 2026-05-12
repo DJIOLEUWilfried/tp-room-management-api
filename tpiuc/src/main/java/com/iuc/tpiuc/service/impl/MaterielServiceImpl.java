@@ -3,6 +3,7 @@ package com.iuc.tpiuc.service.impl;
 import com.iuc.tpiuc.dto.request.MaterielRequestDTO;
 import com.iuc.tpiuc.dto.response.MaterielResponseDTO;
 import com.iuc.tpiuc.exception.custom.ResourceAlreadyExistsException;
+import com.iuc.tpiuc.exception.custom.ResourceNotFoundException;
 import com.iuc.tpiuc.mapper.MaterielMapper;
 import com.iuc.tpiuc.model.Materiel;
 import com.iuc.tpiuc.repository.MaterielRepository;
@@ -70,21 +71,19 @@ public class MaterielServiceImpl implements MaterielService {
     @Override
     public MaterielResponseDTO update(Long id, MaterielRequestDTO dto) {
 
-        log.info("Modification matériel : {}", id);
+        log.info("\n ============  Modification matériel : {}  ============", id);
 
         Materiel materiel = materielRepository.findById(id)
-                        .orElseThrow(() -> new RuntimeException("Matériel introuvable"));
+                        .orElseThrow(() -> new ResourceNotFoundException("Matériel introuvable"));
 
-        materiel.setNom(dto.getNom());
-        materiel.setQuantite(dto.getQuantite());
-        materiel.setEtat(dto.getEtat());
 
-        Materiel updated =
-                materielRepository.save(materiel);
+        Materiel materielSave = MaterielMapper.toEntity(dto);
 
-        log.info("Matériel modifié : {}", id);
+        Materiel updated = materielRepository.save(materielSave);
 
-        return MaterielMapper.toResponse(updated);
+        log.info("\n ============  Matériel modifié : {} ============", id);
+
+        return MaterielMapper.toResponseDTO(updated);
 
     }
 
