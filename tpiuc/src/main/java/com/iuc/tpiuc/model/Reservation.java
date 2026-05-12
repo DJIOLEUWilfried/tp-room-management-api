@@ -35,6 +35,10 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private ReservationStatus status;
 
+    @Column(nullable = false)
+    private Boolean deleted = false;
+
+
     @ManyToOne
     @JoinColumn(name = "id_professeur")
     private Utilisateur professeur;
@@ -42,9 +46,6 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "id_salle")
     private Salle salle;
-
-    @Column(nullable = false)
-    private Boolean deleted = false;
 
     @ManyToMany
     @JoinTable(

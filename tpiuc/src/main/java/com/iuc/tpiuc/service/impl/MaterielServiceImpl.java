@@ -115,7 +115,7 @@ public class MaterielServiceImpl implements MaterielService {
     @Override
     public boolean delete(Long id) {
 
-        log.info("Suppression matériel : {}", id);
+        log.info("\n ============  Suppression matériel : {}  ============", id);
 
         try {
 
