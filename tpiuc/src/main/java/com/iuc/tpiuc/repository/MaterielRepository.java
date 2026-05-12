@@ -10,4 +10,6 @@ public interface MaterielRepository extends JpaRepository<Materiel, Long> {
 
     List<Materiel> findByEtat(MaterielEtat etat);
 
+    boolean findByNom(String nom);
+
 }
