@@ -5,7 +5,9 @@ import com.iuc.tpiuc.dto.response.AuditResponseDTO;
 import com.iuc.tpiuc.dto.response.UtilisateurResponseDTO;
 import com.iuc.tpiuc.model.Audit;
 import com.iuc.tpiuc.model.Utilisateur;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AuditMapper {
 
     public static Audit toEntity(

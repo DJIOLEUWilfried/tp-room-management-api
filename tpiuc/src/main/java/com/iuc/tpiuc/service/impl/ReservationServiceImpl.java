@@ -31,7 +31,7 @@ public class ReservationServiceImpl implements ReservationService {
     private final MaterielRepository materielRepository;
     private final AuditRepository auditRepository;
 
-    private final ReservationMapper reservationMapper;
+    // private final ReservationMapper reservationMapper;
 
     @Override
     public ReservationResponseDTO create(ReservationRequestDTO dto) {
@@ -140,7 +140,7 @@ public class ReservationServiceImpl implements ReservationService {
             dto.setStatus(ReservationStatus.EN_ATTENTE);
 
             Reservation reservation =
-                    reservationMapper.toEntity(
+                    ReservationMapper.toEntity(
                             dto,
                             professeur,
                             salle,
