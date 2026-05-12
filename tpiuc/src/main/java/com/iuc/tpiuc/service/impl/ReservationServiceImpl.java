@@ -267,8 +267,16 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ReservationResponseDTO> getByProfesseur(Long professeurId) {
-        return List.of();
+
+        log.info("\n ============ Liste réservations professeur {} ============", professeurId );
+
+        return reservationRepository
+                .findByProfesseurId(professeurId)
+                .stream()
+                .map(ReservationMapper::toResponseDTO)
+                .toList();
     }
 
     @Override
