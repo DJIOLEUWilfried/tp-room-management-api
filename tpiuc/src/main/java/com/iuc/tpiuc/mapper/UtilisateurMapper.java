@@ -4,6 +4,9 @@ import com.iuc.tpiuc.dto.request.UtilisateurRequestDTO;
 import com.iuc.tpiuc.dto.response.UtilisateurResponseDTO;
 import com.iuc.tpiuc.model.Utilisateur;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class UtilisateurMapper {
 
     public static Utilisateur toEntity(UtilisateurRequestDTO dto) {
