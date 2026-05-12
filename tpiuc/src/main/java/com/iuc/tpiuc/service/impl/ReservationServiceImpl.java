@@ -137,6 +137,8 @@ public class ReservationServiceImpl implements ReservationService {
             // CREATION RESERVATION
             // ==============================
 
+            dto.setStatus(ReservationStatus.EN_ATTENTE);
+
             Reservation reservation =
                     reservationMapper.toEntity(
                             dto,
@@ -235,7 +237,7 @@ public class ReservationServiceImpl implements ReservationService {
             // ==============================
             AuditRequestDTO auditDTO = new AuditRequestDTO();
 
-            auditDTO.setAction("VALIDATION_RESERVATION");
+            auditDTO.setAction(buildAuditAction(status));
             auditDTO.setUtilisateurId(responsable.getId());
 
             Audit audit = AuditMapper.toEntity(auditDTO, responsable);
