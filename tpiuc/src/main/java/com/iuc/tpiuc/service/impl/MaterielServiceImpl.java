@@ -6,6 +6,7 @@ import com.iuc.tpiuc.exception.custom.ResourceAlreadyExistsException;
 import com.iuc.tpiuc.exception.custom.ResourceNotFoundException;
 import com.iuc.tpiuc.mapper.MaterielMapper;
 import com.iuc.tpiuc.model.Materiel;
+import com.iuc.tpiuc.model.Salle;
 import com.iuc.tpiuc.repository.MaterielRepository;
 import com.iuc.tpiuc.service.MaterielService;
 import lombok.RequiredArgsConstructor;
@@ -63,7 +64,7 @@ public class MaterielServiceImpl implements MaterielService {
             log.warn("\n ============ Tentative de création avec un nom déjà utilisé : {} ============", nom);
 
             throw new ResourceAlreadyExistsException(
-                    String.format("Un matériel avec le nom '%s' existe déjà.", nom)
+                    String.format("\n Un matériel avec le nom '%s' existe déjà.", nom)
             );
         }
     }
@@ -74,7 +75,7 @@ public class MaterielServiceImpl implements MaterielService {
         log.info("\n ============  Modification matériel : {}  ============", id);
 
         Materiel materiel = materielRepository.findById(id)
-                            .orElseThrow(() -> new ResourceNotFoundException("Matériel introuvable"));
+                            .orElseThrow(() -> new ResourceNotFoundException("\n Matériel introuvable"));
 
 
         Materiel materielSave = MaterielMapper.toEntity(dto);
@@ -93,7 +94,7 @@ public class MaterielServiceImpl implements MaterielService {
         log.info("\n ============ Recherche matériel : {}  ============", id);
 
         Materiel materiel = materielRepository.findById(id)
-                              .orElseThrow(() -> new ResourceNotFoundException("Matériel introuvable"));
+                              .orElseThrow(() -> new ResourceNotFoundException("\n Matériel introuvable"));
 
         return MaterielMapper.toResponseDTO(materiel);
 
@@ -113,7 +114,26 @@ public class MaterielServiceImpl implements MaterielService {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+
+        log.info("Suppression matériel : {}", id);
+
+        try {
+
+            Materiel materiel = materielRepository.findById(id)
+                    .orElseThrow(() ->new ResourceNotFoundException("\n Matériel introuvable"));
+
+            materielRepository.delete(materiel);
+
+            log.info("\n ============ Matériel supprimée : {}  ============", id);
+
+            return true;
+
+        } catch (Exception e) {
+
+            log.error("\n Erreur suppression salle {}", id, e);
+
+            throw e;
+        }
     }
 
 

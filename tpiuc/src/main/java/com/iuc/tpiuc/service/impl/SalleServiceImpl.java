@@ -133,7 +133,7 @@ public class SalleServiceImpl implements SalleService {
     @Override
     public boolean delete(Long id) {
 
-        log.info("Suppression salle : {}", id);
+        log.info("\n ============  Suppression salle : {}  ============", id);
 
         try {
 
@@ -143,13 +143,13 @@ public class SalleServiceImpl implements SalleService {
 
             salleRepository.delete(salle);
 
-            log.info("Salle supprimée : {}", id);
+            log.info("\n ============ Salle supprimée : {}  ============", id);
 
             return true;
 
         } catch (Exception e) {
 
-            log.error("Erreur suppression salle {}", id, e);
+            log.error("\n Erreur suppression salle {}", id, e);
 
             throw e;
         }
