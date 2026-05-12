@@ -281,6 +281,26 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public boolean delete(Long id) {
-        return true;
+
+        log.info("\n ============ Suppression réservation : {}  ============", id);
+
+        try {
+
+            Reservation reservation = reservationRepository.findById(id)
+                            .orElseThrow(() -> new RuntimeException("\n Réservation introuvable"));
+
+            reservationRepository.delete(reservation);
+
+            log.info("\n Réservation supprimée : {}", id );
+
+            return true;
+
+        } catch (Exception e) {
+
+            log.error("\n Erreur suppression réservation", e);
+
+            throw e;
+        }
+
     }
 }
