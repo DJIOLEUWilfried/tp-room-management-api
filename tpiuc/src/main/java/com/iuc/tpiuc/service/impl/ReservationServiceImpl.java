@@ -162,7 +162,7 @@ public class ReservationServiceImpl implements ReservationService {
 
             auditRepository.save(audit);
 
-            log.info("\n ============ Réservation créée : {}  ============", saved.getId());
+            log.info("\n ============ Réservation créée avec succès : {}  ============", saved.getId());
 
             return ReservationMapper.toResponseDTO(saved);
 
@@ -188,6 +188,21 @@ public class ReservationServiceImpl implements ReservationService {
 
             case EN_ATTENTE ->
                     "MISE_EN_ATTENTE_RESERVATION";
+        };
+    }
+
+    private String buildMessage(ReservationStatus status) {
+
+        return switch (status) {
+
+            case VALIDEE ->
+                    "Réservation validée avec succès";
+
+            case REFUSEE ->
+                    "Réservation refusée avec succès";
+
+            case EN_ATTENTE ->
+                    "Réservation mise en attente avec succès";
         };
     }
 
@@ -244,7 +259,7 @@ public class ReservationServiceImpl implements ReservationService {
 
             auditRepository.save(audit);
 
-            log.info("\n ============ Réservation validée : {}  ============",updated.getId() );
+            log.info("\n ============ {}: {}  ============", buildMessage(status), updated.getId());
 
             return ReservationMapper.toResponseDTO(updated);
 
