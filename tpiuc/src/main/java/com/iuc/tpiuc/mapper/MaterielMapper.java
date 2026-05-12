@@ -4,6 +4,9 @@ import com.iuc.tpiuc.dto.request.MaterielRequestDTO;
 import com.iuc.tpiuc.dto.response.MaterielResponseDTO;
 import com.iuc.tpiuc.model.Materiel;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MaterielMapper {
 
     public static Materiel toEntity(MaterielRequestDTO dto) {

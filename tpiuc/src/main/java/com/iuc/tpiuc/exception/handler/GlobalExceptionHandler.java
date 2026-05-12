@@ -84,7 +84,7 @@ public class GlobalExceptionHandler {
 
 
     // InvalidReservationTimeException
-    @ExceptionHandler(ForbiddenException.class)
+    @ExceptionHandler(InvalidReservationTimeException.class)
     public ResponseEntity<ApiError> handleInvalidReservationTime(InvalidReservationTimeException ex) {
 
         ApiError error = new ApiError(

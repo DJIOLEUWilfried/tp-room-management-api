@@ -10,13 +10,11 @@ import com.iuc.tpiuc.model.Materiel;
 import com.iuc.tpiuc.model.Reservation;
 import com.iuc.tpiuc.model.Salle;
 import com.iuc.tpiuc.model.Utilisateur;
-import com.iuc.tpiuc.repository.SalleRepository;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ReservationMapper {
 
 
