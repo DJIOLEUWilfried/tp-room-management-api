@@ -5,6 +5,7 @@ import com.iuc.tpiuc.dto.request.ReservationRequestDTO;
 import com.iuc.tpiuc.dto.response.ReservationResponseDTO;
 import com.iuc.tpiuc.enums.ReservationStatus;
 import com.iuc.tpiuc.enums.Role;
+import com.iuc.tpiuc.exception.custom.*;
 import com.iuc.tpiuc.mapper.AuditMapper;
 import com.iuc.tpiuc.mapper.ReservationMapper;
 import com.iuc.tpiuc.model.*;
@@ -46,10 +47,10 @@ public class ReservationServiceImpl implements ReservationService {
             if (dto.getHeureDebut()
                     .isAfter(dto.getHeureFin())) {
 
-                log.error("Heure début > heure fin");
+                log.error("\n Heure début > heure fin");
 
-                throw new RuntimeException(
-                        "L'heure de début doit être inférieure à l'heure de fin");
+                throw new InvalidReservationTimeException(
+                        "\n L'heure de début doit être inférieure à l'heure de fin");
             }
 
             // ==============================
@@ -61,10 +62,10 @@ public class ReservationServiceImpl implements ReservationService {
                                     dto.getProfesseurId())
                             .orElseThrow(() -> {
 
-                                log.error("Professeur introuvable");
+                                log.error("\n Professeur introuvable");
 
-                                return new RuntimeException(
-                                        "Professeur introuvable");
+                                return new ResourceNotFoundException(
+                                        "\n Professeur introuvable");
                             });
 
             // ==============================
@@ -73,10 +74,10 @@ public class ReservationServiceImpl implements ReservationService {
 
             if (professeur.getRole() != Role.PROFESSEUR) {
 
-                log.error("Utilisateur non professeur");
+                log.error("\n Utilisateur non professeur");
 
-                throw new RuntimeException(
-                        "Seul un professeur peut réserver");
+                throw new UnauthorizedException(
+                        "\n Seul un professeur peut réserver");
             }
 
             // ==============================
@@ -87,10 +88,10 @@ public class ReservationServiceImpl implements ReservationService {
                             dto.getSalleId())
                     .orElseThrow(() -> {
 
-                        log.error("Salle introuvable");
+                        log.error("\n Salle introuvable");
 
-                        return new RuntimeException(
-                                "Salle introuvable");
+                        return new ResourceNotFoundException(
+                                "\n Salle introuvable");
                     });
 
             // ==============================
@@ -99,10 +100,10 @@ public class ReservationServiceImpl implements ReservationService {
 
             if (!salle.getDisponible()) {
 
-                log.error("Salle indisponible");
+                log.error("\n Salle indisponible");
 
-                throw new RuntimeException(
-                        "Salle indisponible");
+                throw new BadRequestException(
+                        "\n Salle indisponible");
             }
 
             // ==============================
@@ -118,10 +119,10 @@ public class ReservationServiceImpl implements ReservationService {
 
             if (!conflits.isEmpty()) {
 
-                log.error("Conflit horaire détecté");
+                log.error("\n Conflit horaire détecté");
 
                 throw new RuntimeException(
-                        "Cette salle est déjà réservée sur cette plage horaire");
+                        "\n Cette salle est déjà réservée sur cette plage horaire");
             }
 
             // ==============================
@@ -146,9 +147,7 @@ public class ReservationServiceImpl implements ReservationService {
                             materiels
                     );
 
-            Reservation saved =
-                    reservationRepository.save(
-                            reservation);
+            Reservation saved = reservationRepository.save(reservation);
 
             // ==============================
             // AUDIT
