@@ -74,7 +74,7 @@ public class MaterielServiceImpl implements MaterielService {
         log.info("\n ============  Modification matériel : {}  ============", id);
 
         Materiel materiel = materielRepository.findById(id)
-                        .orElseThrow(() -> new ResourceNotFoundException("Matériel introuvable"));
+                            .orElseThrow(() -> new ResourceNotFoundException("Matériel introuvable"));
 
 
         Materiel materielSave = MaterielMapper.toEntity(dto);
@@ -89,7 +89,14 @@ public class MaterielServiceImpl implements MaterielService {
 
     @Override
     public MaterielResponseDTO getById(Long id) {
-        return null;
+
+        log.info("\n ============ Recherche matériel : {}  ============", id);
+
+        Materiel materiel = materielRepository.findById(id)
+                              .orElseThrow(() -> new ResourceNotFoundException("Matériel introuvable"));
+
+        return MaterielMapper.toResponseDTO(materiel);
+
     }
 
     @Override
