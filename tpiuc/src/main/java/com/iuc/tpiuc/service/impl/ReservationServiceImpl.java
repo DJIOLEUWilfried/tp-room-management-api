@@ -76,8 +76,7 @@ public class ReservationServiceImpl implements ReservationService {
 
                 log.error("\n Utilisateur non professeur");
 
-                throw new UnauthorizedException(
-                        "\n Seul un professeur peut réserver");
+                throw new UnauthorizedException("\n Seul un professeur peut réserver");
             }
 
             // ==============================
@@ -102,8 +101,7 @@ public class ReservationServiceImpl implements ReservationService {
 
                 log.error("\n Salle indisponible");
 
-                throw new BadRequestException(
-                        "\n Salle indisponible");
+                throw new BadRequestException("\n Salle indisponible");
             }
 
             // ==============================
@@ -177,8 +175,69 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public ReservationResponseDTO updateStatus(Long reservationId, ReservationStatus status, Long responsableId) {
-        return null;
+    public ReservationResponseDTO updateStatus(Long reservationId,
+                                               ReservationStatus status,
+                                               Long responsableId)
+    {
+
+        log.info("\n ============  Validation réservation {}  ============", reservationId);
+
+        try {
+
+            // ==============================
+            // RECUPERATION RESPONSABLE
+            // ==============================
+
+            Utilisateur responsable = utilisateurRepository.findById( responsableId)
+                            .orElseThrow(() -> new ResourceNotFoundException("\n Responsable introuvable"));
+
+            // ==============================
+            // VERIFIER ROLE
+            // ==============================
+
+            if (responsable.getRole()
+                    != Role.RESPONSABLE) {
+
+                log.error("\n Utilisateur n'est pas un responsable");
+
+                throw new UnauthorizedException("\n Seul un responsable peut valider");
+            }
+
+            // ==============================
+            // RECUPERATION RESERVATION
+            // ==============================
+
+            Reservation reservation = reservationRepository.findById(reservationId)
+                            .orElseThrow(() -> new ResourceNotFoundException("\n Réservation introuvable"));
+
+            reservation.setStatus(status);
+
+            Reservation updated = reservationRepository.save(reservation);
+
+            // ==============================
+            // AUDIT
+            // ==============================
+            AuditRequestDTO auditDTO = new AuditRequestDTO();
+
+            auditDTO.setAction("VALIDATION_RESERVATION");
+            auditDTO.setUtilisateurId(responsable.getId());
+
+            Audit audit = AuditMapper.toEntity(auditDTO, responsable);
+
+            auditRepository.save(audit);
+
+            log.info("\n ============ Réservation validée : {}  ============",updated.getId() );
+
+            return ReservationMapper.toResponseDTO(updated);
+
+        } catch (Exception e) {
+
+            log.error("\n Erreur validation réservation", e );
+
+            throw e;
+        }
+
+
     }
 
     @Override
