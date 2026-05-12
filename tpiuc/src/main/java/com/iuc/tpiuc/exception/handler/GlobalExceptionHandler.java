@@ -62,7 +62,7 @@ public class GlobalExceptionHandler {
 
         ApiError error = new ApiError(
                 ex.getMessage(),
-                HttpStatus.UNAUTHORIZED.value(),
+                HttpStatus.CONFLICT.value(),
                 LocalDateTime.now()
         );
 
@@ -82,6 +82,20 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
     }
 
+
+    // InvalidReservationTimeException
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ApiError> handleInvalidReservationTime(InvalidReservationTimeException ex) {
+
+        ApiError error = new ApiError(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
     //  Validation (déjà bon)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(
@@ -97,6 +111,8 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(errors);
     }
+
+
 
 
     // Exception globale (fallback)
