@@ -8,6 +8,9 @@ import com.iuc.tpiuc.model.Materiel;
 import com.iuc.tpiuc.model.Signalement;
 import com.iuc.tpiuc.model.Utilisateur;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SignalementMapper {
 
     public static Signalement toEntity(
