@@ -273,6 +273,6 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        return true;
     }
 }
