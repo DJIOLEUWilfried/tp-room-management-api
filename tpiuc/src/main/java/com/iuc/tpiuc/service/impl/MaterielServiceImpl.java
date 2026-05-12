@@ -101,7 +101,14 @@ public class MaterielServiceImpl implements MaterielService {
 
     @Override
     public List<MaterielResponseDTO> getAll() {
-        return List.of();
+
+        log.info("\n ============  Liste matériels  ============");
+
+        return materielRepository.findAll()
+                .stream()
+                .map(MaterielMapper::toResponseDTO)
+                .toList();
+
     }
 
     @Override
