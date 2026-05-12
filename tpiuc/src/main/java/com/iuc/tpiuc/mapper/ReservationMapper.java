@@ -21,7 +21,7 @@ public class ReservationMapper {
 
 
 
-    public Reservation toEntity( ReservationRequestDTO dto,
+    public static Reservation toEntity( ReservationRequestDTO dto,
                                  Utilisateur professeur,
                                  Salle salle,
                                  List<Materiel> materiels)
@@ -29,7 +29,7 @@ public class ReservationMapper {
         return Reservation.builder()
                 .heureDebut(dto.getHeureDebut())
                 .heureFin(dto.getHeureFin())
-                .status(ReservationStatus.EN_ATTENTE)
+                .status(dto.getStatus()) // ReservationStatus.EN_ATTENTE
                 .professeur(professeur)
                 .salle(salle)
                 .materiels(materiels)

@@ -3,6 +3,7 @@ package com.iuc.tpiuc.service.impl;
 import com.iuc.tpiuc.dto.request.ReservationRequestDTO;
 import com.iuc.tpiuc.dto.response.ReservationResponseDTO;
 import com.iuc.tpiuc.enums.ReservationStatus;
+import com.iuc.tpiuc.mapper.ReservationMapper;
 import com.iuc.tpiuc.repository.*;
 import com.iuc.tpiuc.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,8 @@ public class ReservationServiceImpl implements ReservationService {
     private final MaterielRepository materielRepository;
     private final AuditRepository auditRepository;
 
-    
+    private final ReservationMapper reservationMapper;
+
     @Override
     public ReservationResponseDTO create(ReservationRequestDTO dto) {
         return null;
