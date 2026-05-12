@@ -39,7 +39,7 @@ public class MaterielServiceImpl implements MaterielService {
 
             Materiel saved = materielRepository.save(materiel);
 
-            log.info("\n ============  Matériel créé : {}  ============", saved.getId());
+            log.info("\n Matériel créé : {} ", saved.getId());
 
             return MaterielMapper.toResponseDTO(saved);
 
@@ -69,6 +69,7 @@ public class MaterielServiceImpl implements MaterielService {
         }
     }
 
+
     @Override
     public MaterielResponseDTO update(Long id, MaterielRequestDTO dto) {
 
@@ -82,11 +83,12 @@ public class MaterielServiceImpl implements MaterielService {
 
         Materiel updated = materielRepository.save(materielSave);
 
-        log.info("\n ============  Matériel modifié : {} ============", id);
+        log.info("\n Matériel modifié : {} ", id);
 
         return MaterielMapper.toResponseDTO(updated);
 
     }
+
 
     @Override
     public MaterielResponseDTO getById(Long id) {
@@ -100,6 +102,7 @@ public class MaterielServiceImpl implements MaterielService {
 
     }
 
+
     @Override
     public List<MaterielResponseDTO> getAll() {
 
@@ -111,6 +114,7 @@ public class MaterielServiceImpl implements MaterielService {
                 .toList();
 
     }
+
 
     @Override
     public boolean delete(Long id) {
@@ -124,7 +128,7 @@ public class MaterielServiceImpl implements MaterielService {
 
             materielRepository.delete(materiel);
 
-            log.info("\n ============ Matériel supprimée : {}  ============", id);
+            log.info("\n Matériel supprimée : {} ", id);
 
             return true;
 

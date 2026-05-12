@@ -174,6 +174,22 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
+    private String buildAuditAction(ReservationStatus status) {
+
+        return switch (status) {
+
+            case VALIDEE ->
+                    "VALIDATION_RESERVATION";
+
+            case REFUSEE ->
+                    "REFUS_RESERVATION";
+
+            case EN_ATTENTE ->
+                    "MISE_EN_ATTENTE_RESERVATION";
+        };
+    }
+
+
     @Override
     public ReservationResponseDTO updateStatus(Long reservationId,
                                                ReservationStatus status,
