@@ -43,7 +43,7 @@ public class MaterielServiceImpl implements MaterielService {
 
         } catch (Exception e) {
 
-            log.error("\n ============  Erreur création .", e);
+            log.error("\n  Erreur création .", e);
 
             throw e;
         }
@@ -62,14 +62,30 @@ public class MaterielServiceImpl implements MaterielService {
             log.warn("\n ============ Tentative de création avec un nom déjà utilisé : {} ============", nom);
 
             throw new ResourceAlreadyExistsException(
-                    String.format("Une salle avec le nom '%s' existe déjà.", nom)
+                    String.format("Un matériel avec le nom '%s' existe déjà.", nom)
             );
         }
     }
 
     @Override
     public MaterielResponseDTO update(Long id, MaterielRequestDTO dto) {
-        return null;
+
+        log.info("Modification matériel : {}", id);
+
+        Materiel materiel = materielRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Matériel introuvable"));
+
+        materiel.setNom(dto.getNom());
+        materiel.setQuantite(dto.getQuantite());
+        materiel.setEtat(dto.getEtat());
+
+        Materiel updated =
+                materielRepository.save(materiel);
+
+        log.info("Matériel modifié : {}", id);
+
+        return MaterielMapper.toResponse(updated);
+
     }
 
     @Override

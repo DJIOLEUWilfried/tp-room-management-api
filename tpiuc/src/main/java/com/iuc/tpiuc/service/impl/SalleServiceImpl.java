@@ -44,7 +44,7 @@ public class SalleServiceImpl implements SalleService {
 
         } catch (Exception e) {
 
-            log.error(String.format("\n ============  Échec de création de cette salle. Erreur: %s   ============" , e) );
+            log.error("\n  Erreur création .", e);
 
             throw new ResourceNotFoundException("\n  Échec de création de cette salle");
         }
