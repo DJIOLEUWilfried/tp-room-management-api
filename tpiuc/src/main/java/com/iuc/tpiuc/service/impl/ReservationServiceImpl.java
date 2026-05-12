@@ -241,13 +241,29 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public ReservationResponseDTO getById(Long id) {
-        return null;
+
+        log.info("\n ============ Recherche réservation : {}  ============", id);
+
+        Reservation reservation = reservationRepository.findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("\n Réservation introuvable"));
+
+        return ReservationMapper.toResponseDTO(reservation);
+
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ReservationResponseDTO> getAll() {
-        return List.of();
+
+        log.info("\n ============ Liste réservations  ============");
+
+        return reservationRepository.findAll()
+                .stream()
+                .map(ReservationMapper::toResponseDTO)
+                .toList();
+
     }
 
     @Override
