@@ -3,6 +3,8 @@ package com.iuc.tpiuc.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +14,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
+@SQLRestriction("deleted = false")
 public class Signalement {
 
     @Id
@@ -27,8 +31,12 @@ public class Signalement {
     @JoinColumn(name = "id_createur")
     private Utilisateur createur;
 
+
     @ManyToOne
     @JoinColumn(name = "id_materiel")
     private Materiel materiel;
+
+    @Column(nullable = false)
+    private Boolean deleted = false;
 
 }

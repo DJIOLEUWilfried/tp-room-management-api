@@ -5,6 +5,8 @@ import com.iuc.tpiuc.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
+@SQLRestriction("deleted = false")
 public class Reservation {
 
     @Id
@@ -38,6 +42,9 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "id_salle")
     private Salle salle;
+
+    @Column(nullable = false)
+    private Boolean deleted = false;
 
     @ManyToMany
     @JoinTable(

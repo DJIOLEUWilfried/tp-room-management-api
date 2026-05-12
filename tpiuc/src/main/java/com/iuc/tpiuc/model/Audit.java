@@ -5,6 +5,8 @@ package com.iuc.tpiuc.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDateTime;
 
@@ -15,6 +17,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
+@SQLRestriction("deleted = false")
 public class Audit {
 
     @Id
@@ -25,6 +29,9 @@ public class Audit {
 
     @CreationTimestamp
     private LocalDateTime dateAction;
+
+    @Column(nullable = false)
+    private Boolean deleted = false;
 
     @ManyToOne
     @JoinColumn(name = "id_utilisateur")

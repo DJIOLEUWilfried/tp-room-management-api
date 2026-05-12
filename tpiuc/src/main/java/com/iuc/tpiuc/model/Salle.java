@@ -31,6 +31,7 @@ public class Salle {
     private Boolean disponible;
     private String localisation;
 
+    @Column(nullable = false)
     private Boolean deleted = false;
 
     @OneToMany(mappedBy = "salle", fetch = FetchType.LAZY)
