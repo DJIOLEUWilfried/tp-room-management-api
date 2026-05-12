@@ -4,6 +4,9 @@ import com.iuc.tpiuc.dto.request.SalleRequestDTO;
 import com.iuc.tpiuc.dto.response.SalleResponseDTO;
 import com.iuc.tpiuc.model.Salle;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class SalleMapper {
 
     public static Salle toEntity(SalleRequestDTO dto) {
