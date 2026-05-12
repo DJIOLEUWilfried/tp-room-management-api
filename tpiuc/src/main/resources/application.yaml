@@ -15,11 +15,14 @@ spring:
 
     show-sql: true
 
+    # Pour éviter les problèmes de performance et de LazyInitialization
+    open-in-view: false
+
     properties:
       hibernate:
         format_sql: true
 
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    # database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8080
