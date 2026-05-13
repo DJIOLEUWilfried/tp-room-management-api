@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE audit SET deleted = true WHERE id=?")
 @SQLRestriction("deleted = false")
 public class Audit {
 
