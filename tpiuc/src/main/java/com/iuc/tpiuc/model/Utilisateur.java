@@ -20,7 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
+@SQLDelete(sql = "UPDATE utilisateur SET deleted = true WHERE id=?")
 @SQLRestriction("deleted = false")
 public class Utilisateur {
 
