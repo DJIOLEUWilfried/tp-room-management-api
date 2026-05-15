@@ -92,7 +92,7 @@ public class MaterielServiceImpl implements MaterielService {
 
     }
 
-
+    @AuditTrace(action = "RECHERCHE_SALLE_PAR_IDENTIFIANT")
     @Override
     public MaterielResponseDTO getById(Long id) {
 
