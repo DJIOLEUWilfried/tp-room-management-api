@@ -296,7 +296,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
 
-    @AuditTrace(action = "LISTE_DES_RESERVATION")
+    @AuditTrace(action = "LISTE_DES_RESERVATIONs")
     @Override
     @Transactional(readOnly = true)
     public List<ReservationResponseDTO> getAll() {
