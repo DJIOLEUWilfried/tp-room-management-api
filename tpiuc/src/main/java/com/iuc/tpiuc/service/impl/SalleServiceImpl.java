@@ -68,6 +68,8 @@ public class SalleServiceImpl implements SalleService {
         }
     }
 
+
+    @AuditTrace(action = "MODIFICATION_SALLE")
     @Override
     public SalleResponseDTO update(Long id, SalleRequestDTO dto) {
 
