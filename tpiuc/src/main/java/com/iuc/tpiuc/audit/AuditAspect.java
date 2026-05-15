@@ -45,10 +45,7 @@ public class AuditAspect {
 
         } catch (Exception e) {
 
-            log.error(
-                    "Erreur aspect audit",
-                    e
-            );
+            log.error("\n Erreur aspect audit",e);
         }
     }
 
@@ -58,8 +55,11 @@ public class AuditAspect {
 
     private Utilisateur getCurrentUser() {
 
-        // Plus tard :
-        // Spring Security JWT
+        /*
+             Plus tard quand j'ajouterai Spring Security JWT,
+        je remplacerai return null par SecurityContextHolder pour
+        SecurityContextHolder
+         */
 
         return null;
     }
