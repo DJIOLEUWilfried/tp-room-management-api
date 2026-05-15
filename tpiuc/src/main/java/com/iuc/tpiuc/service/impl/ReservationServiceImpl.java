@@ -1,5 +1,6 @@
 package com.iuc.tpiuc.service.impl;
 
+import com.iuc.tpiuc.audit.AuditTrace;
 import com.iuc.tpiuc.dto.request.AuditRequestDTO;
 import com.iuc.tpiuc.dto.request.ReservationRequestDTO;
 import com.iuc.tpiuc.dto.response.ReservationResponseDTO;
@@ -33,6 +34,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     // private final ReservationMapper reservationMapper;
 
+    @AuditTrace(action = "CREATION_RESERVATION")
     @Override
     public ReservationResponseDTO create(ReservationRequestDTO dto) {
 
@@ -250,21 +252,6 @@ public class ReservationServiceImpl implements ReservationService {
 
             Reservation updated = reservationRepository.save(reservation);
 
-            // ==============================
-            // AUDIT
-            // ==============================
-            /*
-            AuditRequestDTO auditDTO = new AuditRequestDTO();
-
-            auditDTO.setAction(buildAuditAction(status));
-            auditDTO.setUtilisateurId(responsable.getId());
-
-            Audit audit = AuditMapper.toEntity(auditDTO, responsable);
-
-            auditRepository.save(audit);
-
-
-             */
 
             log.info("\n ============ {}: {}  ============", buildMessage(status), updated.getId());
 
