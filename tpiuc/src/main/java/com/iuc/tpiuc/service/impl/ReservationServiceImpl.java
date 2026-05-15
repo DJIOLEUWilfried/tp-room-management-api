@@ -211,6 +211,7 @@ public class ReservationServiceImpl implements ReservationService {
         };
     }
 
+
     @AuditTrace(action = "MODIFICATION_STATUT_RESERVATION")
     @Override
     public ReservationResponseDTO updateStatus(Long reservationId,
@@ -281,6 +282,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
+
     @AuditTrace(action = "RECHERCHE_RESERVATION_PAR_PROFESSEUR")
     @Override
     @Transactional(readOnly = true)
@@ -336,4 +338,6 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
     }
+
+
 }
