@@ -267,6 +267,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
+    @AuditTrace(action = "RECHERCHE_RESERVATION_PAR_IDENTIFIANT")
     @Override
     @Transactional(readOnly = true)
     public ReservationResponseDTO getById(Long id) {
