@@ -97,7 +97,7 @@ public class SalleServiceImpl implements SalleService {
         }
 
     }
-
+    @AuditTrace(action = "RECHERCHE_SALLE_PAR_IDENTIFIANT")
     @Override
     @Transactional(readOnly = true)
     public SalleResponseDTO getById(Long id) {
