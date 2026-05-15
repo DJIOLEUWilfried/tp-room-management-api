@@ -114,6 +114,7 @@ public class SalleServiceImpl implements SalleService {
 
     }
 
+    @AuditTrace(action = "LISTE_DES_SALLES")
     @Override
     @Transactional(readOnly = true)
     public List<SalleResponseDTO> getAll() {
