@@ -27,7 +27,7 @@ public class MaterielServiceImpl implements MaterielService {
     private final MaterielRepository materielRepository;
 
 
-    @AuditTrace(action = "CREATION_MATERIE")
+    @AuditTrace(action = "CREATION_MATERIEL")
     @Override
     public MaterielResponseDTO create(MaterielRequestDTO dto) {
 
@@ -92,6 +92,7 @@ public class MaterielServiceImpl implements MaterielService {
 
     }
 
+
     @AuditTrace(action = "RECHERCHE_MATERIEL_PAR_IDENTIFIANT")
     @Override
     public MaterielResponseDTO getById(Long id) {
@@ -105,6 +106,7 @@ public class MaterielServiceImpl implements MaterielService {
 
     }
 
+
     @AuditTrace(action = "LISTE_DES_MATERIELS")
     @Override
     public List<MaterielResponseDTO> getAll() {
@@ -117,6 +119,7 @@ public class MaterielServiceImpl implements MaterielService {
                 .toList();
 
     }
+
 
     @AuditTrace(action = "SUPPRIMER_UN_MATERIEL")
     @Override
