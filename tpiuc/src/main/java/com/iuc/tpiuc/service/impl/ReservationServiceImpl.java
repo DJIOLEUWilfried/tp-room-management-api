@@ -281,6 +281,22 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
+    @AuditTrace(action = "RECHERCHE_RESERVATION_PAR_PROFESSEUR")
+    @Override
+    @Transactional(readOnly = true)
+    public List<ReservationResponseDTO> getByProfesseur(Long professeurId) {
+
+        log.info("\n ============ Liste réservations professeur {} ============", professeurId );
+
+        return reservationRepository
+                .findByProfesseurId(professeurId)
+                .stream()
+                .map(ReservationMapper::toResponseDTO)
+                .toList();
+    }
+
+
+    @AuditTrace(action = "LISTE_DES_RESERVATION")
     @Override
     @Transactional(readOnly = true)
     public List<ReservationResponseDTO> getAll() {
@@ -294,18 +310,6 @@ public class ReservationServiceImpl implements ReservationService {
 
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<ReservationResponseDTO> getByProfesseur(Long professeurId) {
-
-        log.info("\n ============ Liste réservations professeur {} ============", professeurId );
-
-        return reservationRepository
-                .findByProfesseurId(professeurId)
-                .stream()
-                .map(ReservationMapper::toResponseDTO)
-                .toList();
-    }
 
     @Override
     public boolean delete(Long id) {
