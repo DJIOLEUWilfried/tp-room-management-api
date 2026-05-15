@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 public class AuditMapper {
 
     public static Audit toEntity(
-            AuditRequestDTO dto,
+            String action,
             Utilisateur utilisateur
     ) {
 
         return Audit.builder()
-                .action(dto.getAction())
+                .action(action)
                 .utilisateur(utilisateur)
                 .build();
     }
