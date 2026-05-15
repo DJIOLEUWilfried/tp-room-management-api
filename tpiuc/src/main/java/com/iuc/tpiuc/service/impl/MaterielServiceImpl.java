@@ -27,7 +27,7 @@ public class MaterielServiceImpl implements MaterielService {
     private final MaterielRepository materielRepository;
 
 
-    @AuditTrace(action = "CREATION_SALLE")
+    @AuditTrace(action = "CREATION_MATERIE")
     @Override
     public MaterielResponseDTO create(MaterielRequestDTO dto) {
 
@@ -72,7 +72,7 @@ public class MaterielServiceImpl implements MaterielService {
     }
 
 
-    @AuditTrace(action = "MODIFICATION_SALLE")
+    @AuditTrace(action = "MODIFICATION_MATERIEL")
     @Override
     public MaterielResponseDTO update(Long id, MaterielRequestDTO dto) {
 
