@@ -72,6 +72,7 @@ public class MaterielServiceImpl implements MaterielService {
     }
 
 
+    @AuditTrace(action = "MODIFICATION_SALLE")
     @Override
     public MaterielResponseDTO update(Long id, MaterielRequestDTO dto) {
 
