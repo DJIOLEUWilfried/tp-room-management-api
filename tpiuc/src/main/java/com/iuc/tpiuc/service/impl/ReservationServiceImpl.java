@@ -153,6 +153,7 @@ public class ReservationServiceImpl implements ReservationService {
             // AUDIT
             // ==============================
 
+            /*
             AuditRequestDTO auditDTO = new AuditRequestDTO();
 
             auditDTO.setAction("CREATION_RESERVATION");
@@ -161,6 +162,8 @@ public class ReservationServiceImpl implements ReservationService {
             Audit audit = AuditMapper.toEntity(auditDTO, professeur);
 
             auditRepository.save(audit);
+
+            */
 
             log.info("\n ============ Réservation créée avec succès : {}  ============", saved.getId());
 
@@ -250,6 +253,7 @@ public class ReservationServiceImpl implements ReservationService {
             // ==============================
             // AUDIT
             // ==============================
+            /*
             AuditRequestDTO auditDTO = new AuditRequestDTO();
 
             auditDTO.setAction(buildAuditAction(status));
@@ -258,6 +262,9 @@ public class ReservationServiceImpl implements ReservationService {
             Audit audit = AuditMapper.toEntity(auditDTO, responsable);
 
             auditRepository.save(audit);
+
+
+             */
 
             log.info("\n ============ {}: {}  ============", buildMessage(status), updated.getId());
 
