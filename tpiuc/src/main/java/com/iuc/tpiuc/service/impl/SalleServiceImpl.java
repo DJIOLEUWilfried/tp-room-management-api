@@ -1,5 +1,6 @@
 package com.iuc.tpiuc.service.impl;
 
+import com.iuc.tpiuc.audit.AuditTrace;
 import com.iuc.tpiuc.dto.request.SalleRequestDTO;
 import com.iuc.tpiuc.dto.response.SalleResponseDTO;
 import com.iuc.tpiuc.exception.custom.ResourceAlreadyExistsException;
@@ -24,7 +25,7 @@ public class SalleServiceImpl implements SalleService {
 
     private final SalleRepository salleRepository;
 
-
+    @AuditTrace(action = "CREATION_SALLE")
     @Override
     public SalleResponseDTO create(SalleRequestDTO dto) {
 
