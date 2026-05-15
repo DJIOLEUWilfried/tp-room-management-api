@@ -296,7 +296,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
 
-    @AuditTrace(action = "LISTE_DES_RESERVATIONs")
+    @AuditTrace(action = "LISTE_DES_RESERVATIONS")
     @Override
     @Transactional(readOnly = true)
     public List<ReservationResponseDTO> getAll() {
@@ -311,6 +311,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
 
+    @AuditTrace(action = "SUPPRIMER_RESERVATION")
     @Override
     public boolean delete(Long id) {
 
