@@ -105,7 +105,7 @@ public class MaterielServiceImpl implements MaterielService {
 
     }
 
-
+    @AuditTrace(action = "LISTE_DES_MATERIELS")
     @Override
     public List<MaterielResponseDTO> getAll() {
 
