@@ -134,6 +134,7 @@ public class SalleServiceImpl implements SalleService {
 
     }
 
+    @AuditTrace(action = "SUPPRIMER_SALLE")
     @Override
     public boolean delete(Long id) {
 
