@@ -1,5 +1,6 @@
 package com.iuc.tpiuc.service.impl;
 
+import com.iuc.tpiuc.dto.response.AuditResponseDTO;
 import com.iuc.tpiuc.mapper.AuditMapper;
 import com.iuc.tpiuc.model.Audit;
 import com.iuc.tpiuc.model.Utilisateur;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -37,6 +40,16 @@ public class AuditServiceImpl  implements AuditService {
             throw e;
         }
 
+    }
+
+    @Override
+    public List<AuditResponseDTO> getAll() {
+        return List.of();
+    }
+
+    @Override
+    public List<AuditResponseDTO> getByUtilisateur(Long Utilisateur) {
+        return List.of();
     }
 
 

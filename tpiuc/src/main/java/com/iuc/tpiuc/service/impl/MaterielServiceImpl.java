@@ -1,5 +1,6 @@
 package com.iuc.tpiuc.service.impl;
 
+import com.iuc.tpiuc.audit.AuditTrace;
 import com.iuc.tpiuc.dto.request.MaterielRequestDTO;
 import com.iuc.tpiuc.dto.response.MaterielResponseDTO;
 import com.iuc.tpiuc.exception.custom.ResourceAlreadyExistsException;
@@ -26,6 +27,7 @@ public class MaterielServiceImpl implements MaterielService {
     private final MaterielRepository materielRepository;
 
 
+    @AuditTrace(action = "CREATION_SALLE")
     @Override
     public MaterielResponseDTO create(MaterielRequestDTO dto) {
 
