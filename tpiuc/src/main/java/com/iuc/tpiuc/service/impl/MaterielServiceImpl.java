@@ -118,7 +118,7 @@ public class MaterielServiceImpl implements MaterielService {
 
     }
 
-
+    @AuditTrace(action = "SUPPRIMER_UN_MATERIEL")
     @Override
     public boolean delete(Long id) {
 
