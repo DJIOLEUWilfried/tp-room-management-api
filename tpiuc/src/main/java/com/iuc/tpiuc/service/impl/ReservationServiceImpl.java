@@ -211,7 +211,7 @@ public class ReservationServiceImpl implements ReservationService {
         };
     }
 
-
+    @AuditTrace(action = "MODIFICATION_STATUT_RESERVATION")
     @Override
     public ReservationResponseDTO updateStatus(Long reservationId,
                                                ReservationStatus status,
