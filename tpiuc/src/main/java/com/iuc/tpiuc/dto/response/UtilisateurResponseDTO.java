@@ -34,4 +34,6 @@ public class UtilisateurResponseDTO {
 
     private LocalDateTime dateCreation;
 
+    private Boolean deleted;
+
 }

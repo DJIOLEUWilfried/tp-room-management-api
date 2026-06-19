@@ -2,6 +2,7 @@ package com.iuc.tpiuc.model;
 
 
 
+import com.iuc.tpiuc.audit.AuditActions;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,15 +26,20 @@ public class Audit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String action;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 200)
+    private AuditActions action;
+
 
     @CreationTimestamp
     private LocalDateTime dateAction;
 
     @Column(nullable = false)
+    @Builder.Default
     private Boolean deleted = false;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_utilisateur")
     private Utilisateur utilisateur;
 

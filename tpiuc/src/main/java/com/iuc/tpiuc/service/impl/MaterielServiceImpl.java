@@ -1,8 +1,12 @@
 package com.iuc.tpiuc.service.impl;
 
+import com.iuc.tpiuc.audit.AuditActions;
 import com.iuc.tpiuc.audit.AuditTrace;
+import com.iuc.tpiuc.dto.request.MaterielEtatRequestDTO;
 import com.iuc.tpiuc.dto.request.MaterielRequestDTO;
 import com.iuc.tpiuc.dto.response.MaterielResponseDTO;
+import com.iuc.tpiuc.enums.MaterielEtat;
+import com.iuc.tpiuc.exception.custom.BusinessException;
 import com.iuc.tpiuc.exception.custom.ResourceAlreadyExistsException;
 import com.iuc.tpiuc.exception.custom.ResourceNotFoundException;
 import com.iuc.tpiuc.mapper.MaterielMapper;
@@ -27,11 +31,11 @@ public class MaterielServiceImpl implements MaterielService {
     private final MaterielRepository materielRepository;
 
 
-    @AuditTrace(action = "CREATION_MATERIEL")
+    @AuditTrace(action = AuditActions.CREATION_MATERIEL)
     @Override
     public MaterielResponseDTO create(MaterielRequestDTO dto) {
 
-        log.info("\n ============  Création matériel : {}  ============", dto.getNom());
+        log.info("\n ============ Debut de création matériel : {}  ============", dto.getNom());
 
         validateSalleName(dto.getNom());
 
@@ -39,15 +43,18 @@ public class MaterielServiceImpl implements MaterielService {
 
             Materiel materiel = MaterielMapper.toEntity(dto);
 
+            // materiel.setDeleted(false);
+            materiel.setEtat(MaterielEtat.DISPONIBLE);
+
             Materiel saved = materielRepository.save(materiel);
 
-            log.info("\n Matériel créé : {} ", saved.getId());
+            log.info("\n ============ Matériel créé : {} ================= ", saved.getId());
 
             return MaterielMapper.toResponseDTO(saved);
 
         } catch (Exception e) {
 
-            log.error("\n  Erreur création .", e);
+            log.error("\n  ================ Erreur création : ", e);
 
             throw e;
         }
@@ -59,32 +66,33 @@ public class MaterielServiceImpl implements MaterielService {
      */
     private void validateSalleName(String nom) {
 
-        boolean exists = materielRepository.findByNom(nom);
+        boolean exists = materielRepository.existsByNom(nom);
 
         if (exists) {
 
             log.warn("\n ============ Tentative de création avec un nom déjà utilisé : {} ============", nom);
 
             throw new ResourceAlreadyExistsException(
-                    String.format("\n Un matériel avec le nom '%s' existe déjà.", nom)
+                    String.format(" Un matériel avec le nom existe déjà avec le nom '%s'.", nom)
             );
         }
     }
 
 
-    @AuditTrace(action = "MODIFICATION_MATERIEL")
+    @AuditTrace(action = AuditActions.MODIFICATION_MATERIEL)
     @Override
     public MaterielResponseDTO update(Long id, MaterielRequestDTO dto) {
 
         log.info("\n ============  Modification matériel : {}  ============", id);
 
         Materiel materiel = materielRepository.findById(id)
-                            .orElseThrow(() -> new ResourceNotFoundException("\n Matériel introuvable"));
+                            .orElseThrow(() -> new ResourceNotFoundException(" Matériel introuvable avec l'id : " + id));
 
 
-        Materiel materielSave = MaterielMapper.toEntity(dto);
+        materiel.setNom(dto.getNom());
+        materiel.setQuantite(dto.getQuantite());
 
-        Materiel updated = materielRepository.save(materielSave);
+        Materiel updated = materielRepository.save(materiel);
 
         log.info("\n Matériel modifié : {} ", id);
 
@@ -93,21 +101,21 @@ public class MaterielServiceImpl implements MaterielService {
     }
 
 
-    @AuditTrace(action = "RECHERCHE_MATERIEL_PAR_IDENTIFIANT")
+    @AuditTrace(action = AuditActions.RECHERCHE_MATERIEL_PAR_IDENTIFIANT)
     @Override
     public MaterielResponseDTO getById(Long id) {
 
         log.info("\n ============ Recherche matériel : {}  ============", id);
 
         Materiel materiel = materielRepository.findById(id)
-                              .orElseThrow(() -> new ResourceNotFoundException("\n Matériel introuvable"));
+                              .orElseThrow(() -> new ResourceNotFoundException(" Matériel introuvable avec l'id : " + id));
 
         return MaterielMapper.toResponseDTO(materiel);
 
     }
 
 
-    @AuditTrace(action = "LISTE_DES_MATERIELS")
+    @AuditTrace(action = AuditActions.LISTE_DES_MATERIELS)
     @Override
     public List<MaterielResponseDTO> getAll() {
 
@@ -121,7 +129,7 @@ public class MaterielServiceImpl implements MaterielService {
     }
 
 
-    @AuditTrace(action = "SUPPRIMER_MATERIEL")
+    @AuditTrace(action = AuditActions.SUPPRIMER_MATERIEL)
     @Override
     public boolean delete(Long id) {
 
@@ -130,11 +138,11 @@ public class MaterielServiceImpl implements MaterielService {
         try {
 
             Materiel materiel = materielRepository.findById(id)
-                    .orElseThrow(() ->new ResourceNotFoundException("\n Matériel introuvable"));
+                    .orElseThrow(() ->new ResourceNotFoundException(" Matériel introuvable avec l'id : " + id));
 
             materielRepository.delete(materiel);
 
-            log.info("\n Matériel supprimée : {} ", id);
+            log.info("\n ===============  Matériel supprimée : {} ===============", id);
 
             return true;
 
@@ -146,5 +154,69 @@ public class MaterielServiceImpl implements MaterielService {
         }
     }
 
+
+
+    @Override
+    @Transactional
+    @AuditTrace(action = AuditActions.MODIFICATION_ETAT_MATERIEL)
+    public MaterielResponseDTO updateEtat(
+            Long id,
+            MaterielEtat etat
+    ) {
+
+        log.info("\n ============  Début changement état matériel {} -> {}. ============", id, etat );
+
+        try {
+
+            Materiel materiel =
+                    materielRepository.findById(id)
+                            .orElseThrow(() ->
+                                    new ResourceNotFoundException(
+                                            "Matériel introuvable avec l'id : "
+                                                    + id
+                                    ));
+
+            // materiel.setEtat(MaterielEtat.valueOf( etat ));
+            materiel.setEtat(etat);
+
+            Materiel updated = materielRepository.save(materiel);
+
+            log.info( "\n ============ Etat du matériel {} modifié avec succès. ============", id);
+
+            return MaterielMapper.toResponseDTO( updated );
+
+        } catch (Exception e) {
+
+            log.error("Erreur changement état matériel {}", id, e );
+
+            throw e;
+        }
+    }
+
+
+    @Override
+    @Transactional(readOnly = true)
+    @AuditTrace(action = AuditActions.LISTER_MATERIELS_PAR_ETAT)
+    public List<MaterielResponseDTO> getByEtat( MaterielEtat etat ) {
+
+        log.info( "\n ============ Début recherche matériels état : {} ============", etat);
+
+        try {
+
+            List<Materiel> materiels = materielRepository.findByEtat(etat);
+
+            log.info( "\n ============ {} matériel(s) trouvé(s) pour l'état {} ============", materiels.size(), etat);
+
+            return materiels.stream()
+                    .map(MaterielMapper::toResponseDTO)
+                    .toList();
+
+        } catch (Exception e) {
+
+            log.error("Erreur lors de la recherche des matériels par état {}", etat, e);
+
+            throw e;
+        }
+    }
 
 }

@@ -2,6 +2,7 @@ package com.iuc.tpiuc.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -16,8 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
-@SQLRestriction("deleted = false")
+//@SQLDelete(sql = "UPDATE salle SET deleted = true WHERE id=?")
+//@SQLRestriction("deleted = false")
 public class Salle {
 
     @Id
@@ -28,11 +29,13 @@ public class Salle {
     private String nom;
 
     private Integer capacite;
+
+    @NotNull
     private Boolean disponible;
     private String localisation;
 
-    @Column(nullable = false)
-    private Boolean deleted = false;
+//    @Column(nullable = false)
+//    private Boolean deleted = false;
 
     @OneToMany(mappedBy = "salle", fetch = FetchType.LAZY)
     private List<Reservation> reservations = new ArrayList<>();

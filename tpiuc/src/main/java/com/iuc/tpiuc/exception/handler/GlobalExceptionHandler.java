@@ -113,7 +113,32 @@ public class GlobalExceptionHandler {
     }
 
 
+    // BusinessException
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ApiError> Business(BusinessException ex) {
 
+        ApiError error = new ApiError(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
+
+    // PasswordMismatchException
+    @ExceptionHandler(PasswordMismatchException.class)
+    public ResponseEntity<ApiError> PasswordMismatch(PasswordMismatchException ex) {
+
+        ApiError error = new ApiError(
+                ex.getMessage(),
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now()
+        );
+
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
 
     // Exception globale (fallback)
     @ExceptionHandler(Exception.class)

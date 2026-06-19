@@ -16,4 +16,9 @@ public interface SalleService {
     List<SalleResponseDTO> getAll();
 
     boolean delete(Long id);
+
+    SalleResponseDTO updateDisponibilite(Long id, Boolean disponible );
+
+    List<SalleResponseDTO> getByDisponibilite(Boolean disponible);
+
 }

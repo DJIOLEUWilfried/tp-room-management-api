@@ -8,6 +8,7 @@ import com.iuc.tpiuc.repository.AuditRepository;
 import com.iuc.tpiuc.service.AuditService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +23,15 @@ public class AuditServiceImpl  implements AuditService {
 
     private final AuditRepository auditRepository;
 
+    @Async
     @Override
     public void save(String action, Utilisateur utilisateur) {
 
         try {
 
-            Audit audit = AuditMapper.toEntity( action, utilisateur);
+            Audit audit = AuditMapper.toEntity( action, utilisateur );
+
+            audit.setDeleted(false);
 
             auditRepository.save(audit);
 
@@ -42,11 +46,13 @@ public class AuditServiceImpl  implements AuditService {
 
     }
 
+    @Async
     @Override
     public List<AuditResponseDTO> getAll() {
         return List.of();
     }
 
+    @Async
     @Override
     public List<AuditResponseDTO> getByUtilisateur(Long Utilisateur) {
         return List.of();

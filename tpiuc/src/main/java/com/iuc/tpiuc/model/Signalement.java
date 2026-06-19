@@ -14,8 +14,6 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE signalement SET deleted = true WHERE id=?")
-@SQLRestriction("deleted = false")
 public class Signalement {
 
     @Id
@@ -31,12 +29,9 @@ public class Signalement {
     @JoinColumn(name = "id_createur")
     private Utilisateur createur;
 
-
     @ManyToOne
     @JoinColumn(name = "id_materiel")
     private Materiel materiel;
 
-    @Column(nullable = false)
-    private Boolean deleted = false;
 
 }

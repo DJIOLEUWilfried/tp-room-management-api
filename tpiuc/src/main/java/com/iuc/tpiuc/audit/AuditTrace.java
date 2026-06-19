@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 @Documented
 public @interface AuditTrace {
 
-    String action();
+    AuditActions  action();
 }

@@ -1,5 +1,6 @@
 package com.iuc.tpiuc.mapper;
 
+import com.iuc.tpiuc.audit.AuditActions;
 import com.iuc.tpiuc.dto.request.AuditRequestDTO;
 import com.iuc.tpiuc.dto.response.AuditResponseDTO;
 import com.iuc.tpiuc.dto.response.UtilisateurResponseDTO;
@@ -16,7 +17,7 @@ public class AuditMapper {
     ) {
 
         return Audit.builder()
-                .action(action)
+                .action(AuditActions.valueOf(action))
                 .utilisateur(utilisateur)
                 .build();
     }
@@ -33,7 +34,7 @@ public class AuditMapper {
 
         return AuditResponseDTO.builder()
                 .id(audit.getId())
-                .action(audit.getAction())
+                .action(String.valueOf(audit.getAction()))
                 .dateAction(audit.getDateAction())
                 .utilisateur(utilisateurDTO)
                 .build();
