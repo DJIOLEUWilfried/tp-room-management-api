@@ -4,7 +4,10 @@ package com.iuc.tpiuc.config;
 import com.iuc.tpiuc.security.CustomUserDetailsService;
 import com.iuc.tpiuc.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -156,7 +159,10 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {

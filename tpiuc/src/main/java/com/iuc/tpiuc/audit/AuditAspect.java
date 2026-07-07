@@ -34,7 +34,11 @@ public class AuditAspect {
             String action = String.valueOf(auditTrace.action());
 
             // RECUPERATION UTILISATEUR CONNECTE
+<<<<<<< HEAD
             Utilisateur utilisateur = tpIucCurrentUserUtil.getCurrentUser();
+=======
+            Utilisateur utilisateur = TpIucCurrentUserUtil.getCurrentUser();
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 
             assert utilisateur != null;
             log.info("\n ==== Id Utilisateur Audit : {} ", utilisateur.toString());

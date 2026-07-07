@@ -8,7 +8,10 @@ import com.iuc.tpiuc.auth.service.AuthenticationService;
 import io.swagger.v3.oas.annotations.Operation;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+<<<<<<< HEAD
 import jakarta.servlet.http.HttpServletRequest;
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -68,6 +71,7 @@ public class AuthenticationController {
 
     }
 
+<<<<<<< HEAD
 
     @Operation(
             summary = "Déconnexion utilisateur",
@@ -86,4 +90,6 @@ public class AuthenticationController {
         return ResponseEntity.ok("Utilisateur déconnecté");
     }
 
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 }

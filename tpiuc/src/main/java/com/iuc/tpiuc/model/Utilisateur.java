@@ -101,7 +101,11 @@ public class Utilisateur  implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+<<<<<<< HEAD
         return deleted == null || !deleted;
+=======
+        return true;
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
     }
 
 

@@ -5,7 +5,10 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.servers.Server;
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -56,8 +59,11 @@ public class OpenApiConfig {
                                 .description("Serveur local")
                 );
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
     }
 
 

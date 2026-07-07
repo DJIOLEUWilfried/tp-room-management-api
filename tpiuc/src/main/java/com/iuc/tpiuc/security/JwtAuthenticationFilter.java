@@ -11,7 +11,10 @@ import lombok.RequiredArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+<<<<<<< HEAD
 import org.springframework.security.core.Authentication;
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -60,6 +63,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // Vérifier authentification
+<<<<<<< HEAD
         Authentication existingAuth = SecurityContextHolder.getContext().getAuthentication();
         if (userEmail != null && jwtService.isTokenBlacklisted(jwt)) {
             log.warn("JWT rejeté car invalidé : {}", userEmail);
@@ -68,6 +72,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
 
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             try {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(userEmail);

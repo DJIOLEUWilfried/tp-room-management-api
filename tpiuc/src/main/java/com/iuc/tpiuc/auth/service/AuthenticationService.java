@@ -40,18 +40,29 @@ public class AuthenticationService {
 
         try {
             // Vérification email + mot de passe
+<<<<<<< HEAD
             Authentication authentication = authenticationManager.authenticate(
+=======
+            authenticationManager.authenticate(
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
                     new UsernamePasswordAuthenticationToken(
                             request.getEmail(),
                             request.getMotDePasse()
                     )
             );
 
+<<<<<<< HEAD
 
             // Placer l'Authentication dans le SecurityContext pour la requête courante
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
 
+=======
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
             Utilisateur utilisateur = utilisateurRepository
                     .findByEmail(request.getEmail())
                     .orElseThrow(() -> new UsernameNotFoundException("Utilisateur introuvable"));
@@ -60,7 +71,11 @@ public class AuthenticationService {
             String token = jwtService.generateToken(utilisateur);
             log.info("Connexion réussie. Token généré pour: {}", utilisateur.getEmail());
 
+<<<<<<< HEAD
             // TpIucCurrentUserUtil.currentUser = utilisateur;
+=======
+            TpIucCurrentUserUtil.currentUser = utilisateur;
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 
             return AuthenticationResponse.builder()
                     .type("Bearer")
@@ -75,6 +90,7 @@ public class AuthenticationService {
 
     }
 
+<<<<<<< HEAD
 
 
     public void logout(String jwt) {
@@ -84,4 +100,6 @@ public class AuthenticationService {
         SecurityContextHolder.clearContext();
     }
 
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 }

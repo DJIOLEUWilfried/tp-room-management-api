@@ -19,7 +19,10 @@ import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
 import java.util.concurrent.ConcurrentHashMap;
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -35,9 +38,12 @@ public class JwtService {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
+<<<<<<< HEAD
     private final Map<String, Date> invalidatedTokens = new ConcurrentHashMap<>();
 
 
+=======
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
     // Génération simple du token
     public String generateToken(UserDetails userDetails) {
         return generateToken(new HashMap<>(), userDetails);
@@ -75,6 +81,7 @@ public class JwtService {
 
     // Vérifie si token valide
     public boolean isTokenValid(String token, UserDetails userDetails) {
+<<<<<<< HEAD
         return !isTokenBlacklisted(token)
                 && extractUsername(token).equals(userDetails.getUsername())
                 && !isTokenExpired(token);
@@ -101,6 +108,12 @@ public class JwtService {
     }
 
 
+=======
+        final String username = extractUsername(token);
+        return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+    }
+
+>>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
     // Vérifie expiration
     private boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
