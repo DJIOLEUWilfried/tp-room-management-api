@@ -3,12 +3,14 @@ package com.iuc.tpiuc.model;
 
 import com.iuc.tpiuc.enums.ReservationStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,8 +21,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@SQLDelete(sql = "UPDATE reservation SET deleted = true WHERE id=?")
-@SQLRestriction("deleted = false")
 public class Reservation {
 
     @Id
@@ -28,16 +28,37 @@ public class Reservation {
     private Long id;
 
     @CreationTimestamp
-    private LocalDate dateReservation;
+    private LocalDateTime dateCreation;
+
+    private LocalDate dateCours;
+
     private LocalTime heureDebut;
+
     private LocalTime heureFin;
 
     @Enumerated(EnumType.STRING)
+    @Column(length = 200)
     private ReservationStatus status;
 
-    @Column(nullable = false)
-    private Boolean deleted = false;
+    /**
+     * Le professeur a réellement effectué le cours
+     */
+    private Boolean coursEffectue = false;
 
+    /**
+     * Le cahier de texte a été rempli
+     */
+    private Boolean cahierTexteValide = false;
+
+    /**
+     * Date réelle de démarrage
+     */
+    private LocalDateTime debutReel;
+
+    /**
+     * Date réelle de fin
+     */
+    private LocalDateTime finReelle;
 
     @ManyToOne
     @JoinColumn(name = "id_professeur")

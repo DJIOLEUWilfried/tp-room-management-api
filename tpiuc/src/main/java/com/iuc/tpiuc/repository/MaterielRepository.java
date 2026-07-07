@@ -8,8 +8,9 @@ import java.util.List;
 
 public interface MaterielRepository extends JpaRepository<Materiel, Long> {
 
+    boolean existsByNom(String nom);
+
     List<Materiel> findByEtat(MaterielEtat etat);
 
-    boolean findByNom(String nom);
 
 }

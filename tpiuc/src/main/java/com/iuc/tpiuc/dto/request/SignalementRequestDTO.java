@@ -10,16 +10,16 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class SignalementRequestDTO {
 
     @NotBlank(message = "La description est obligatoire")
     private String description;
 
-    @NotNull(message = "Le créateur est obligatoire")
-    private Long createurId;
+//    @NotNull(message = "Le créateur est obligatoire")
+//    private Long createurId;
 
     @NotNull(message = "Le matériel est obligatoire")
     private Long materielId;
-
 
 }

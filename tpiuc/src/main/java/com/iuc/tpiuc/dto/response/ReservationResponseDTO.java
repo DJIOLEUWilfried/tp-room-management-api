@@ -5,6 +5,7 @@ import com.iuc.tpiuc.enums.ReservationStatus;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -17,7 +18,9 @@ public class ReservationResponseDTO {
 
     private Long id;
 
-    private LocalDate dateReservation;
+    private LocalDateTime dateCreation;
+
+    private LocalDate dateCours;
 
     private LocalTime heureDebut;
 
@@ -25,10 +28,11 @@ public class ReservationResponseDTO {
 
     private ReservationStatus status;
 
+    private Boolean coursEffectue;
+
     private UtilisateurResponseDTO professeur;
 
     private SalleResponseDTO salle;
 
     private List<MaterielResponseDTO> materiels;
-
 }

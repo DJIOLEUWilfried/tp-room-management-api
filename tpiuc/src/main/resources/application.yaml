@@ -21,8 +21,19 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
-    # database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   port: 8080
+
+
+# Configuration JWT
+jwt:
+  # Clé secrète pour signer les JWT (générez une clé forte en Base64)
+  secret-key: "c2VjcmV0S2V5Rm9ySldUU2lnbmluZ1doaWNoTXVzdEJlVmVyeUxvbmdBbmRTZWN1cmVGb3JQcm9kdWN0aW9uVXNl"
+
+  # Temps d'expiration du JWT en millisecondes (86400000 = 24 heures)
+  expiration: 86400000
+
+

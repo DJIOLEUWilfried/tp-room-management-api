@@ -14,30 +14,36 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 
     List<Reservation> findByProfesseurId(Long professeurId);
 
+    List<Reservation> findBySalleId( Long salleId );
+
+    List<Reservation> findByDateCours( LocalDate dateCours );
+
+    List<Reservation> findByDateCoursBetween(
+            LocalDate debut,
+            LocalDate fin
+    );
+
     List<Reservation> findByStatus(ReservationStatus status);
 
-    List<Reservation> findByDateReservation(LocalDate date);
+    List<Reservation> findByDateCreation(LocalDate date);
 
     /* Vérifions si une salle est déjà réservée sur une plage horaire donnée
        pour eviter les conflits de réservation
     */
 
     @Query("""
-         SELECT r FROM Reservation r
-         WHERE r.salle.id = :salleId
-         AND r.deleted = false
-         AND r.status <> 'REFUSEE'
-         AND (
-               (:heureDebut < r.heureFin)
-               AND
-               (:heureFin > r.heureDebut)
-         )
+    SELECT r
+    FROM Reservation r
+    WHERE r.dateCours = :dateCours
+      AND r.status = 'VALIDEE'
+      AND :heureDebut BETWEEN r.heureDebut AND r.heureFin
     """)
     List<Reservation> findConflitsHoraires(
-            @Param("salleId") Long salleId,
-            @Param("heureDebut") LocalTime heureDebut,
-            @Param("heureFin") LocalTime heureFin
+            @Param("dateCours") LocalDate dateCours,
+            @Param("heureDebut") LocalTime heureDebut
     );
+
+
 
 
 }

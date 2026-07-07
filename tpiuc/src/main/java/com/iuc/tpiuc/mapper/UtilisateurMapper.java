@@ -32,6 +32,7 @@ public class UtilisateurMapper {
                 .email(utilisateur.getEmail())
                 .role(utilisateur.getRole())
                 .dateCreation(utilisateur.getDateCreation())
+                .deleted(utilisateur.getDeleted())
                 .build();
 
     }
