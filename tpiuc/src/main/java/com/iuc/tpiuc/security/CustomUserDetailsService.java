@@ -5,10 +5,7 @@ import com.iuc.tpiuc.repository.UtilisateurRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-<<<<<<< HEAD
 import org.springframework.security.authentication.DisabledException;
-=======
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -40,7 +37,6 @@ public class CustomUserDetailsService implements UserDetailsService {
                             return new UsernameNotFoundException( "Utilisateur introuvable");
                         });
 
-<<<<<<< HEAD
         if (Boolean.TRUE.equals(utilisateur.getDeleted())) {
             log.error( "\n ==== Utilisateur désactivé : {}. ====", email );
             throw new DisabledException("Utilisateur désactivé: " + email);
@@ -48,13 +44,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
 
-=======
-        if (utilisateur.getDeleted() == true) {
-            throw new UsernameNotFoundException("Utilisateur désactivé: " + email);
-        }
-
-
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
         log.info(  "\n ==== Utilisateur trouvé. Email : {} et Role : {}", utilisateur.getEmail(), utilisateur.getRole() );
 
         log.info( "\n ==== utilisateur.getDeleted() : {}. ==== ", utilisateur.getDeleted()  );

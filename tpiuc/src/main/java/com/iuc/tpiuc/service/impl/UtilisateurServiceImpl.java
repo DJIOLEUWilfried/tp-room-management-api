@@ -33,11 +33,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
     private final UtilisateurRepository utilisateurRepository;
     private final PasswordEncoder passwordEncoder;
 
-<<<<<<< HEAD
     private final TpIucCurrentUserUtil tpIucCurrentUserUtil;
-=======
-    // private final TpIucCurrentUserUtil tpIucCurrentUserUtil;
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 
 
     @AuditTrace(action = AuditActions.CREATION_UTILISATEUR)
@@ -232,11 +228,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
         log.warn("\n ================= Modifier le profil de l'utilisateur ");
 
         Utilisateur utilisateur = utilisateurRepository.findById(
-<<<<<<< HEAD
                         Objects.requireNonNull(tpIucCurrentUserUtil.getCurrentUser()).getId()
-=======
-                        Objects.requireNonNull(TpIucCurrentUserUtil.getCurrentUser()).getId()
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
                 )
                 .orElseThrow(() -> new ResourceNotFoundException(String.format("Utilisateur non trouvé ")));
 
@@ -264,11 +256,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
         // ancienMotDePasse correct ?
         Utilisateur utilisateurExiste = utilisateurRepository.findById(
-<<<<<<< HEAD
                         Objects.requireNonNull(tpIucCurrentUserUtil.getCurrentUser()).getId()
-=======
-                        Objects.requireNonNull(TpIucCurrentUserUtil.getCurrentUser()).getId()
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
                 )
                 .orElseThrow(() -> {
 

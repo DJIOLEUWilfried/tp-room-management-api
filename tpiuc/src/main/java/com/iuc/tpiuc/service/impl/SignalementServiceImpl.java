@@ -42,10 +42,7 @@ public class SignalementServiceImpl implements SignalementService {
 
     private final MaterielRepository materielRepository;
 
-<<<<<<< HEAD
     private final TpIucCurrentUserUtil tpIucCurrentUserUtil;
-=======
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
 
     @AuditTrace( action = AuditActions.CREATION_SIGNALEMENT )
     @Override
@@ -59,11 +56,7 @@ public class SignalementServiceImpl implements SignalementService {
 
             Utilisateur createur =
                     utilisateurRepository.findById(
-<<<<<<< HEAD
                                     Objects.requireNonNull(tpIucCurrentUserUtil.getCurrentUser()).getId())
-=======
-                                    Objects.requireNonNull(TpIucCurrentUserUtil.getCurrentUser()).getId())
->>>>>>> 4d12fc6494c154745a9d256f6cd6cbbe6797b0d8
                             .orElseThrow(() ->
                                     new ResourceNotFoundException(
                                             "Créateur introuvable "));
